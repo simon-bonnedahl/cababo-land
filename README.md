@@ -1,6 +1,6 @@
 # Cababo Project
 
-![Screenshot](https://github.com/simon-bonnedahl/Web3-Land/blob/main/Image1.png)
+![Screenshot](https://github.com/simon-bonnedahl/CababoLand/blob/main/preview.gif)
 
 ## Tools
 
