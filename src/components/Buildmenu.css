@@ -1,0 +1,91 @@
+.buildmenu-nav__cont {
+    position: fixed;
+    width: 250px;
+    top: 20vh;
+    height: 60vh;
+    z-index: 100;
+    background-color: #202020;
+    overflow: hidden;
+    transition: width 0.3s ease;
+    cursor: pointer;
+    box-shadow: 4px 7px 10px rgba(0, 0, 0, 0.4);
+  }
+  
+  @media screen and (min-width: 600px) {
+    .buildmenu-nav__cont {
+      width: 250px;
+    }
+  }
+  
+  .buildmenu-nav {
+    list-style-type: none;
+    color: white;
+  }
+  .buildmenu-nav:first-child {
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+  }
+  
+  .buildmenu-nav__items {
+    padding-bottom: 0rem;
+    font-family: "roboto";
+  }
+  .buildmenu-nav__items a {
+    position: relative;
+    display: block;
+    top: -35px;
+    padding-left: 25px;
+    padding-right: 15px;
+    transition: all 0.3s ease;
+    margin-left: 25px;
+    margin-right: 10px;
+    text-decoration: none;
+    color: white;
+    font-family: "roboto";
+    font-weight: 10;
+    font-size: 1em;
+  }
+  .buildmenu-nav__items a:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 2px;
+    background: radial-gradient(circle at 94.02% 88.03%, #54a4ff, transparent 100%);
+    opacity: 0;
+    transition: all 0.5s ease;
+    z-index: -10;
+  }
+  .buildmenu-nav__items:hover a:after {
+    opacity: 1;
+  }
+  .buildmenu-nav__items svg {
+    width: 26px;
+    height: 26px;
+    position: relative;
+    left: -25px;
+    cursor: pointer;
+  }
+  .buildmenu-nav__items img{
+    width: 26px;
+    height: 26px;
+    position: relative;
+    left: -25px;
+    cursor: pointer;
+  }
+  @media screen and (min-width: 600px) {
+    .buildmenu-nav__items img {
+        width: 50px;
+        height: 50px;
+        left: -40px;
+      }
+    .buildmenu-nav__items svg {
+      width: 32px;
+      height: 32px;
+      left: -40px;
+    }
+  }
+  
+  
