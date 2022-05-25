@@ -1,4 +1,4 @@
-# Cababo Project
+# Cababo Land
 
 ![Screenshot](https://github.com/simon-bonnedahl/CababoLand/blob/main/preview.gif)
 
