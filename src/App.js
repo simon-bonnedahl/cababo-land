@@ -67,6 +67,8 @@ function App() {
 	  const app = initializeApp(firebaseConfig);
 	  const db = getFirestore(app)
 
+	  document.title = "Cababo Land";
+
 	const loadBlockchainData = async () => {
 		if (typeof window.ethereum !== 'undefined') {
 			const web3 = new Web3(window.ethereum)
@@ -127,7 +129,7 @@ function App() {
 	useEffect(() => {
 		loadBlockchainData()
 		loadDatabaseData()
-		console.log(CBOTokens)
+		
 		if(CBOTokens != null){
 		try {
 			
@@ -254,7 +256,7 @@ function App() {
 						/>)}
 				
 				</Suspense>
-				<MapControls/>
+				<MapControls autoRotate={true} />
 			</Canvas>
 			{landView && (buildMode ? (<Buildmenu setBuildMode={setBuildMode} 
 												MoveCamera={MoveCamera} 
@@ -281,6 +283,7 @@ function App() {
 											setLandView={setLandView}
 											buyHandler={buyHandler}
 											hasOwner={hasOwner}
+											account={account}
 
 					/>))}
 		</div>

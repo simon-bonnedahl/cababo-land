@@ -1,5 +1,5 @@
 
-const PlotTooltip= ({landName, landId, landOwner, cost, hasOwner, buyHandler, landView, setLandView}) => {
+const PlotTooltip= ({landName, landId, landOwner, cost, hasOwner, buyHandler, landView, setLandView, account}) => {
     return (
 
       
@@ -14,7 +14,7 @@ const PlotTooltip= ({landName, landId, landOwner, cost, hasOwner, buyHandler, la
 
     <div className='info--owner'>
         <h2>Owner</h2>
-        <p>{landOwner}</p>
+      {landOwner===account ? (<p>You</p>): (<p>{landOwner}</p>) }
     </div>
 
     {!hasOwner && (
