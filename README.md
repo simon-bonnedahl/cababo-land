@@ -1,6 +1,9 @@
 # Cababo Land
 
-![Screenshot](https://github.com/simon-bonnedahl/CababoLand/blob/main/preview.gif)
+![Connect Account](https://github.com/simon-bonnedahl/CababoLand/blob/main/preview_1.gif)
+![Buy land](https://github.com/simon-bonnedahl/CababoLand/blob/main/preview_2.gif)
+![Build](https://github.com/simon-bonnedahl/CababoLand/blob/main/preview_3.gif)
+![Upgrade](https://github.com/simon-bonnedahl/CababoLand/blob/main/preview_4.gif)
 
 ## Tools
 
