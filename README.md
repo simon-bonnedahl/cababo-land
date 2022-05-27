@@ -1,8 +1,12 @@
 # Cababo Land
 
+### Connect your wallet
 ![Connect Account](https://github.com/simon-bonnedahl/CababoLand/blob/main/preview_1.gif)
+### Mint a land property
 ![Buy land](https://github.com/simon-bonnedahl/CababoLand/blob/main/preview_2.gif)
+### Build 
 ![Build](https://github.com/simon-bonnedahl/CababoLand/blob/main/preview_3.gif)
+### Upgrade
 ![Upgrade](https://github.com/simon-bonnedahl/CababoLand/blob/main/preview_4.gif)
 
 ## Tools
