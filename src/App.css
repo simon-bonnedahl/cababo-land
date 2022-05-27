@@ -159,3 +159,28 @@ a {
   margin-right: 250px;
   text-align: center;
 }
+
+.button-small {
+  font-family: "roboto";
+  display: inline-block;
+  padding: 0.75em 1.75em;
+  margin: .5 em 0;
+
+  background: #4f4fa4;
+  color: #E0F1FF;
+  width: 70%;
+  border: none;
+  border-radius: .5em;
+
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 300;
+
+  cursor: pointer;
+  transition: all 500ms ease;
+}
+
+.button-small:hover {
+  background: #3586C6;
+  color: #E0F1FF;
+}
