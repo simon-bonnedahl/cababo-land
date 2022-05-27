@@ -1,5 +1,5 @@
 # Cababo Land
-### Under development
+Cababo Land is a Web3 project currently under development
 
 ## Preview
 
