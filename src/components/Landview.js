@@ -3,7 +3,7 @@ import Plane from './Plane.js'
 import { useState, useEffect, Fragment} from "react";
 import { getDocs, collection } from "firebase/firestore";
 
-const Landview = ({currentBuilding, setCurrentBuilding, buildMode, setBuildMode, targetedCell, setTargetedCell, db, landId, CBOTokens, updateTokenBalance}) => {
+const Landview = ({currentBuilding, setCurrentBuilding, buildMode, setBuildMode, targetedCell, setTargetedCell, db, landId, landOwner, CBOTokens, updateTokenBalance}) => {
     
     const [loading, setLoading] = useState(true)
 

@@ -2,16 +2,20 @@
 import {  useState, useEffect } from 'react';
 
 const Building = ({ position, size, landId, hoveringLandId, landInfo, setLandName, setLandOwner, setHasOwner, setLandId , setHoveringLandId}) => {
-   var color = "#009000"
+   var color = "#ea68dd" //"#009000"
    
-   const [metalness, setMetalness] = useState(0.5)
+   const [metalness, setMetalness] = useState(0.2)
+   const [outline, setOutline] = useState(0.005)
+   
    useEffect(() => {
     if(hoveringLandId == landId){
         //setColor("pink")
         setMetalness(0)
+        setOutline(0.04)
     }else{
         //setColor("#00ff00")
-        setMetalness(0.5)
+        setMetalness(0.2)
+        setOutline(0.005)
     }
    
     
@@ -32,7 +36,7 @@ const Building = ({ position, size, landId, hoveringLandId, landInfo, setLandNam
 
     return (
         <mesh position={position} onClick={clickHandler}>
-            <boxBufferGeometry args={size} />
+            <boxBufferGeometry args={[0.98-outline, 0.98-outline, 0.2]} />
             <meshStandardMaterial color={color} metalness={metalness} />
         </mesh>
     );

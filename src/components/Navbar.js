@@ -15,11 +15,16 @@ const Navbar = ({ web3Handler, account , balance, CBOTokens, landId}) => {
             ) : (
                 <button onClick={web3Handler} className="button">Connect Wallet</button>
             )}
-            {landId && (<h1 className="landId">Land number: {landId}</h1>)}
+            {landId && (<h1 className="landId">{landId}</h1>)}
+            
+            
+            {account ? (
             <div className="balances flex">
-            <h1 className="cbo-balance">{(Math.round((CBOTokens) * 10000) / 10000) + " CBO"}</h1>
-            <h1 className="eth-balance">{(Math.round((balance) * 10000) / 10000) + " ETH"}</h1>
-            </div>
+            <h1 className="cbo-balance">{(Math.round((CBOTokens) * 1000) / 1000) + " CBO"}</h1>
+            <h1 className="eth-balance">{(Math.round((balance) * 1000) / 1000) + " ETH"}</h1>
+            </div>)
+            :
+            (<div className="balances flex"></div>)}
             
             
             

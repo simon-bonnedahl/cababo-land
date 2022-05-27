@@ -16,6 +16,7 @@ import Plotview from './components/Plotview';
 import Landview from './components/Landview';
 import Sidemenu from './components/Sidemenu';
 import Buildmenu from './components/Buildmenu';
+import Dashboard from './components/Dashboard';
 import PlotTooltip from './components/PlotTooltip';
 import BuildingTooltip from './components/BuildingTooltip';
 
@@ -50,8 +51,16 @@ function App() {
 	const [currentBuilding, setCurrentBuilding] = useState(null)
 	const [targetedCell, setTargetedCell] = useState({id:-1, building: null})
 
+	const [dashboardView, setDashboardView] = useState(false)
+
 	const [reload, setReload] = useState()
 
+	const [sunPositionX, setSunPositionX] = useState(0)
+	const [sunPositionZ, setSunPositionZ] = useState(0)
+	const [sunPositionY, setSunPositionY] = useState(0)
+	const [sunAngle, setSunAngle] = useState(0)
+	const [sunRotation, setSunRotation] = useState(1.6)
+	const [starsCount, setStarsCount] = useState(600)
 
 	const firebaseConfig = {
 		apiKey: "AIzaSyAVKrMSQ0I5pyuSzk_x7wrOAIbZwjWA4Fg",
@@ -84,8 +93,9 @@ function App() {
 				setBalance(web3.utils.fromWei(balance))
 			}
 			const networkId = await web3.eth.net.getId()
-
+			try{
 			const land = new web3.eth.Contract(Land.abi, Land.networks[networkId].address)
+
 			setLandContract(land)
 			const CBOTokenContract = new web3.eth.Contract(CBOToken.abi, CBOToken.networks[networkId].address)
 			setCBOTokenContract(CBOTokenContract)
@@ -96,7 +106,10 @@ function App() {
 
 			const plots = await land.methods.getPlots().call()
 			setPlots(plots)
-
+			}catch(error){
+				setLandId("Switch network")
+				
+			}
 			// Event listeners...
 			window.ethereum.on('accountsChanged', function (accounts) {
 				setAccount(accounts[0])
@@ -126,9 +139,21 @@ function App() {
 		}
 	}
 
+	setTimeout(() => {
+		setSunAngle(sunAngle + 0.0005)
+		setSunRotation(sunRotation - 0.001)
+		setSunPositionX(Math.cos(sunRotation))
+		setSunPositionZ(Math.sin(sunRotation))
+		setSunPositionY((Math.sin(sunAngle)/40 ) - 0.017)
+		setStarsCount(Math.round(6 + (Math.sin(sunAngle) * -6))*100)
+		console.log(starsCount)
+	
+	  }, 10)
+
 	useEffect(() => {
 		loadBlockchainData()
 		loadDatabaseData()
+	
 		
 		if(CBOTokens != null){
 		try {
@@ -182,10 +207,10 @@ function App() {
 	}
 	const mintTokens = async (amount) => {
 		try {
-			await CBOTokenContract.methods.issueToken(0x40CA26dd1141987a92ae88479d03dba2f145391F, amount*(10**18))
+			await CBOTokenContract.methods.issueToken(account, amount*(10**18))
 			console.log("minting tokens")
 		} catch (error) {
-			window.alert('Error occurred when buying')
+			window.alert('Error occurred when minting')
 		}
 	}
 	const updateTokenBalance = async (amount) => {
@@ -222,14 +247,20 @@ function App() {
 
 	
 	return (
+		
 		<div>	
-
+			
+			{dashboardView ? (<Dashboard
+								db={db}
+								account={account}
+							/>) 
+			: 
+			(<div>
 			<Navbar web3Handler={web3Handler} account={account} balance={balance} CBOTokens={CBOTokens} landId={landId}/>
-			<Canvas camera={{ position: [0, 10, -10] }}>
-			<color attach="background" args={['#000000']}></color>
+			<Canvas camera={{ position: [0, 5, -10] }}>
 				<Suspense fallback={null}>
-				<Sky sunPosition={[2, 2, 40]}/>
-				<Stars count="400"></Stars>
+				<Sky turbidity={20} rayleigh={4}  sunPosition={[sunPositionX, sunPositionY, sunPositionZ]}/>
+				<Stars depth={100} fade={true} count={starsCount} ></Stars>
 
 				
 
@@ -242,6 +273,7 @@ function App() {
 											setTargetedCell={setTargetedCell}
 											db={db}
 											landId = {landId}
+											landOwner = {landOwner}
 											CBOTokens={CBOTokens}
 											updateTokenBalance={updateTokenBalance}/>
 					
@@ -258,13 +290,16 @@ function App() {
 				</Suspense>
 				<MapControls autoRotate={true} />
 			</Canvas>
-			{landView && (buildMode ? (<Buildmenu setBuildMode={setBuildMode} 
-												MoveCamera={MoveCamera} 
-												setCurrentBuilding={setCurrentBuilding}
-												setTargetedCell={setTargetedCell}/>) 
+			{account && (buildMode ? (<Buildmenu setBuildMode={setBuildMode} 
+									MoveCamera={MoveCamera} 
+									setCurrentBuilding={setCurrentBuilding}
+									setTargetedCell={setTargetedCell}/>) 
 												: 
 												(<Sidemenu setBuildMode={setBuildMode} 
-														   setLandView={setLandView}></Sidemenu>))}
+														   landView={landView}
+														   setLandView={setLandView}
+														   setDashboardView={setDashboardView}>
+												</Sidemenu>))}
 			
 			{landView ? 
 					(<BuildingTooltip 	reload={reload}
@@ -285,7 +320,8 @@ function App() {
 											hasOwner={hasOwner}
 											account={account}
 
-					/>))}
+					/>))}</div>)}
+			
 		</div>
 		
 	);

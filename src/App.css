@@ -79,7 +79,7 @@ a {
   padding: 0.75em 1.75em;
   margin: .5 em 0;
 
-  background: #1D8482;
+  background: #4f4fa4;
   color: #E0F1FF;
 
   border: none;
@@ -140,7 +140,7 @@ a {
 	background-color: rgba(32, 32, 46, 0.8);
 
 	width: 200px;
-	height: 400px;
+	height: 500px;
 
   padding: 0.25em 2em;
 }
@@ -155,5 +155,7 @@ a {
 }
 
 .landId{
+  width: 200px;
   margin-right: 250px;
+  text-align: center;
 }

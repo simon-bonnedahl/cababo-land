@@ -20,13 +20,13 @@ const Plane = ({width, height, depth, topColor}) => {
     return (
         <mesh position={[-0.5, -0.5, 0] }>
             <boxBufferGeometry attach="geometry" args={[width, height, depth]} /> 
-            <meshBasicMaterial attachArray="material" map={colorMap2}  side={DoubleSide}/>
-            <meshBasicMaterial attachArray="material" map={colorMap2}  side={DoubleSide}/>
-            <meshBasicMaterial attachArray="material" map={colorMap1}  side={DoubleSide}/>
-            <meshBasicMaterial attachArray="material" map={colorMap1}  side={DoubleSide}/>
+            <meshStandardMaterial attachArray="material" map={colorMap2}  side={DoubleSide}/>
+            <meshStandardMaterial attachArray="material" map={colorMap2}  side={DoubleSide}/>
+            <meshStandardMaterial attachArray="material" map={colorMap1}  side={DoubleSide}/>
+            <meshStandardMaterial attachArray="material" map={colorMap1}  side={DoubleSide}/>
 
-            <meshBasicMaterial attachArray="material"   map={colorMap3}side={DoubleSide}/>
-            <meshBasicMaterial attachArray="material" color={topColor} side={DoubleSide}/>
+            <meshStandardMaterial attachArray="material" map={colorMap3} side={DoubleSide}/>
+            <meshStandardMaterial attachArray="material" color={topColor} side={DoubleSide}/>
 
             
         </mesh>

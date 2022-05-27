@@ -1,8 +1,9 @@
 .sidemenu-nav__cont {
     position: fixed;
+    display: flex;
     width: 100px;
-    top: 20vh;
     height: 55vh;
+    top: 20vh;
     z-index: 100;
     background-color: rgba(32, 32, 46, 0.8);
     overflow: hidden;
@@ -54,7 +55,7 @@
     top: 0;
     left: 0;
     border-radius: 2px;
-    background: radial-gradient(circle at 94.02% 88.03%, #54a4ff, transparent 100%);
+    background: radial-gradient(circle at 94.02% 88.03%, #4f4fa4, transparent 100%);
     opacity: 0;
     transition: all 0.5s ease;
     z-index: -10;
@@ -89,8 +90,4 @@
     }
   }
   
-  body {
-    height: 100vh;
-    background: radial-gradient(circle at 94.02% 88.03%, #54a4ff, transparent 100%), radial-gradient(circle at 25.99% 27.79%, #ff94fb, transparent 100%), radial-gradient(circle at 50% 50%, #000000, #000000 100%);
-  }
   
