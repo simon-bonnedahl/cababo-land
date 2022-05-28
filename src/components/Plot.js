@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import grass from '../assets/grass2.jpg'
 import { TextureLoader } from 'three';
 import { useLoader } from '@react-three/fiber';
-const Plot = ({ position, landId, hoveringLandId, landInfo, setLandName, setLandOwner, setHasOwner, setLandId ,setHoveringLandId}) => {
+const Plot = ({ position, landId, hoveringLandId, landInfo, setLandOwner, setHasOwner, setLandId ,setHoveringLandId}) => {
     const [color, setColor] = useState("#6f6fC4") //"#00ff00"
     const [metalness, setMetalness] = useState(0.8)
     const [outline, setOutline] = useState(0.005)
@@ -23,7 +23,6 @@ const Plot = ({ position, landId, hoveringLandId, landInfo, setLandName, setLand
     }, [hoveringLandId, landId]);
 
     const clickHandler = () => {
-        setLandName(landInfo.name)
         setLandId(landId)
         setHoveringLandId(landId)
         

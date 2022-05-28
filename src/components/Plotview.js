@@ -24,11 +24,10 @@ const Plotview = ({plots, hoveringLandId, setLandName, setLandOwner, setHasOwner
                 )
             } else {
                 return (
-                    
+                 
                     <Building
                         key={index}
                         position={[(plot.id % 10)-5, (Math.floor(plot.id / 10))-5, 0.5]}
-                        size={[0.95, 0.95, 0.2]}
                         landId={index + 1}
                         hoveringLandId={hoveringLandId}
                         landInfo={plot}
@@ -37,6 +36,7 @@ const Plotview = ({plots, hoveringLandId, setLandName, setLandOwner, setHasOwner
                         setHasOwner={setHasOwner}
                         setLandId={setLandId}
                         setHoveringLandId={setHoveringLandId}
+                        forSale={plot.forSale}
                     />
                 )
             }

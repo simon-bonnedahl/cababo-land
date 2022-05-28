@@ -43,7 +43,6 @@ function App() {
 	const [plots, setPlots] = useState(null)
 	const [landId, setLandId] = useState(null)
 	const [hoveringLandId, setHoveringLandId] = useState(null)
-	const [landName, setLandName] = useState(null)
 	const [landOwner, setLandOwner] = useState(null)
 	const [hasOwner, setHasOwner] = useState(false)
 
@@ -147,7 +146,6 @@ function App() {
 		setSunPositionZ(Math.sin(sunRotation))
 		setSunPositionY((Math.sin(sunAngle)/40 ) - 0.017)
 		setStarsCount(Math.round(6 + (Math.sin(sunAngle) * -6))*100)
-		console.log(sunPositionY)
 	
 	  }, 10)
 
@@ -170,19 +168,46 @@ function App() {
 		}
 	}, [account, reload, CBOTokens])
 
-	
-	const buyHandler = async (_id) => {
+	const sellPlot = async (_id, price) => {
+		await landContract.methods.putPlotUpForSale(_id, price).send({from: account})
+		const plots = await landContract.methods.getPlots().call()
+		setPlots(plots)
+
+		setReload(!reload)
+
+
+	}
+	const cancelSell = async (_id) => {
+		await landContract.methods.takeOffMarket(_id).send({from: account})
+		const plots = await landContract.methods.getPlots().call()
+		setPlots(plots)
+
+		setReload(!reload)
+
+
+	}
+
+	const buyPlot = async (_id, price) =>{
+		await landContract.methods.buyPlot(_id).send({value: price, from: account})
+		const plots = await landContract.methods.getPlots().call()
+		setPlots(plots)
+
+		setReload(!reload)
+	}
+
+
+	const mintPlot = async (_id, price) => {
 		try {
-			await landContract.methods.mint(_id).send({ from: account, value: '1000000000000000000' })
+			
+			await landContract.methods.mint(_id).send({ from: account, value: price.toString() })
 
 			const plots = await landContract.methods.getPlots().call()
 			setPlots(plots)
 
-			setLandName(plots[_id - 1].id)
 			setLandOwner(plots[_id - 1].owner)
 			setHasOwner(true)
 
-
+			setReload(!reload)
 
 			//Skriv in kontot i databasen om det inte redan existerar
 
@@ -192,7 +217,7 @@ function App() {
 				try {
 					await setDoc(doc(db, "accounts", account), {
 						level: 1,
-						CBOTokens: 0
+						CBOTokens: 1	
 					});
 				}catch (error){
 					console.log(error)
@@ -254,12 +279,12 @@ function App() {
 		
 		<div>	
 			
-			{dashboardView ? (<Dashboard
+			{dashboardView && (<Dashboard
 								db={db}
 								account={account}
-							/>) 
-			: 
-			(<div>
+							/>) }
+			
+			<div>
 			<Navbar web3Handler={web3Handler} account={account} balance={balance} CBOTokens={CBOTokens} landId={landId}/>
 			<Canvas camera={{ position: [0, 5, -10] }}>
 				<Suspense fallback={null}>
@@ -267,9 +292,10 @@ function App() {
 				<Stars depth={100} fade={true} count={starsCount} ></Stars>
 
 				
-					<pointLight color="ffffff" intensity={0.3 + sunPositionY*10} lookAt={[5, 5, 0]} position={[-sunPositionX*100, sunPositionY*1000, -sunPositionZ*100]} />
-					<ambientLight intensity={0.8 + sunPositionY*10}/>
-					{landView ? (<Landview 	currentBuilding={currentBuilding} 
+					<pointLight color="#ffffff" intensity={0.3 + sunPositionY*10} lookAt={[5, 5, 0]} position={[-sunPositionX*100, sunPositionY*1000, -sunPositionZ*100]} />
+					<ambientLight intensity={1 + sunPositionY*10}/>
+
+					{!dashboardView && (landView ? (<Landview 	currentBuilding={currentBuilding} 
 											setCurrentBuilding={setCurrentBuilding}
 											buildMode={buildMode} 
 											setBuildMode={setBuildMode}
@@ -284,12 +310,14 @@ function App() {
 					
 					) : (<Plotview plots={plots} 
 						hoveringLandId={hoveringLandId}
-						setLandName={setLandName}
 						setLandOwner={setLandOwner}
 						setHasOwner={setHasOwner}
 						setLandId={setLandId}
 						setHoveringLandId={setHoveringLandId}
-						/>)}
+						
+						/>)
+						)}
+					
 				
 				</Suspense>
 				<MapControls autoRotate={true} />
@@ -302,7 +330,10 @@ function App() {
 												(<Sidemenu setBuildMode={setBuildMode} 
 														   landView={landView}
 														   setLandView={setLandView}
-														   setDashboardView={setDashboardView}>
+														   dashboardView={dashboardView}
+														   setDashboardView={setDashboardView}
+														   landOwner={landOwner}
+														   account={account}>
 												</Sidemenu>))}
 			
 			{landView ? 
@@ -315,16 +346,20 @@ function App() {
 										setCBOTokens={setCBOTokens}/>)
 					:
 					(landId && (<PlotTooltip landId={landId}
-											landName={landName}
 											landOwner={landOwner}
 											landView={landView}
-											cost={cost}
+											cost={plots[landId-1].price}
 											setLandView={setLandView}
-											buyHandler={buyHandler}
+											mintPlot={mintPlot}
 											hasOwner={hasOwner}
 											account={account}
+											sellPlot={sellPlot}
+											cancelSell={cancelSell}
+											buyPlot={buyPlot}
+											web3={web3}
+											plot={plots[landId-1]}
 
-					/>))}</div>)}
+					/>))}</div>
 			
 		</div>
 		

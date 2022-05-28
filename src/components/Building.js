@@ -1,8 +1,13 @@
 
 import {  useState, useEffect } from 'react';
 
-const Building = ({ position, size, landId, hoveringLandId, landInfo, setLandName, setLandOwner, setHasOwner, setLandId , setHoveringLandId}) => {
-   var color = "#ea68dd" //"#009000"
+const Building = ({ position, landId, hoveringLandId, landInfo, setLandOwner, setHasOwner, setLandId , setHoveringLandId, forSale}) => {
+  
+  
+    var color = "#ea68dd" //"#009000"
+    if(forSale){
+        color = "#ffff00"
+    }
    
    const [metalness, setMetalness] = useState(0.8)
    const [outline, setOutline] = useState(0.005)
@@ -21,7 +26,6 @@ const Building = ({ position, size, landId, hoveringLandId, landInfo, setLandNam
     
 });
     const clickHandler = () => {
-        setLandName(landInfo.name)
         setLandId(landId)
         setHoveringLandId(landId)
 

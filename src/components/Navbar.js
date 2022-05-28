@@ -7,8 +7,8 @@ const Navbar = ({ web3Handler, account , balance, CBOTokens, landId}) => {
             {account ? (
                  
                  <button onClick={web3Handler} className="btn purple">
-                 <svg width="150px" height="60px"  viewBox="0 0 180 60" class="border">
-                 <rect x="0" y="0" width="150" height="60" rx="10" stroke="white" stroke-width="0.5" fill="none" />
+                 <svg width="150px" height="60px"  viewBox="0 0 180 60" className="border">
+                 <rect x="0" y="0" width="150" height="60" rx="10" stroke="white" strokeWidth="0.5" fill="none" />
                  </svg>
                  <span>{account.slice(0, 5) + '...' + account.slice(38, 42)}</span>
                  </button>
@@ -16,8 +16,8 @@ const Navbar = ({ web3Handler, account , balance, CBOTokens, landId}) => {
             ) : (
                 
                 <button onClick={web3Handler} className="btn">
-                <svg width="150px" height="60px"  viewBox="0 0 180 60" class="border">
-                <rect x="0" y="0" width="150" height="60" rx="10" stroke="white" stroke-width="0.5" fill="none" />
+                <svg width="150px" height="60px"  viewBox="0 0 180 60" className="border">
+                <rect x="0" y="0" width="150" height="60" rx="10" stroke="white" strokeWidth="0.5" fill="none" />
                 </svg>
                 <span>Connect Wallet</span>
                 </button>

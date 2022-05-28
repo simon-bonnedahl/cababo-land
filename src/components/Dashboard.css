@@ -1,8 +1,11 @@
 .body{
     overflow-y: hidden;
-    background: radial-gradient(circle at top, #5f5fb4 , #2e2e2e);
-    background-image: url("../assets/background.png");
-    background-size: 100vw;
+    position: absolute;
+    top:8vh;
+    width: 100vw;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0);
+    
 
 
 }
@@ -12,7 +15,7 @@
     width: 80vw;
     height: 85vh;
     margin: auto;
-    margin-top: 10vh;
+    margin-top: 5vh;
     flex-direction: column;
     justify-content: space-between;
 }

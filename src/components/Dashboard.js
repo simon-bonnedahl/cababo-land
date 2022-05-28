@@ -1,29 +1,9 @@
 
 import './Dashboard.css'
-const Dashboard = ({db, account, web3Handler}) => {
-    /*<h1>Total CBOTokens</h1>
-            <h1>Minted CBOTokens</h1>
-            <h1>Unminted CBOTokens</h1>
-            <button>Mint CBOTokens to wallet</button>
-            <h1>Average hourly income</h1>
-            */
+const Dashboard = ({db, account, web3Handler}) => { 
     return (
         <div className="body">
             
-        <nav className="flex-between">
-        {account ? (
-                <a
-                    href={`${""}/address/${account}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="button">
-                    {account.slice(0, 5) + '...' + account.slice(38, 42)}
-                </a>
-            ) : (
-                <button onClick={web3Handler} className="button">Connect Wallet</button>
-            )}
-
-        </nav>
         <div className="main">
             <div className="upper">
                 <div className="left">

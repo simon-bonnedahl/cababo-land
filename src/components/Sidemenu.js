@@ -1,14 +1,14 @@
 import './Sidemenu.css'
 import HammerIcon from '../assets/hammer2.svg'
 
-const Sidemenu = ({setBuildMode, landView, setLandView, setDashboardView}) => {
+const Sidemenu = ({setBuildMode, landView, setLandView, dashboardView, setDashboardView, landOwner, account}) => {
     return (
 
       
 
       <nav className="sidemenu-nav__cont">
         <ul className="sidemenu-nav">
-          {landView && (<li className="sidemenu-nav__items " onClick={() => setBuildMode(true)} >
+          {(landView && (landOwner === account))  && (<li className="sidemenu-nav__items " onClick={() => setBuildMode(true)} >
           <img src={HammerIcon} ></img>
             <a >Build</a>
           </li>)}   
@@ -20,21 +20,23 @@ const Sidemenu = ({setBuildMode, landView, setLandView, setDashboardView}) => {
             </svg>
             <a href="">Market</a>
           </li>
-          {landView && (
-          <li onClick={() => setLandView(false)} className="sidemenu-nav__items ">
+          {(landView || dashboardView) && (
+          <li onClick={() => (setLandView(false), setDashboardView(false))} className="sidemenu-nav__items ">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
             <path fill="#4f4fa4" d="M16,14.2c-1,0-1.8,0.8-1.8,1.8s0.8,1.8,1.8,1.8c1,0,1.8-0.8,1.8-1.8S17,14.2,16,14.2z M16,0
               C7.2,0,0,7.2,0,16c0,8.8,7.2,16,16,16s16-7.2,16-16C32,7.2,24.8,0,16,0z M19.5,19.5L6.4,25.6l6.1-13.1l13.1-6.1L19.5,19.5z"/>
             </svg>
            <a>Map</a>
           </li>)}
-            
-          <li className="sidemenu-nav__items " onClick={() => setDashboardView(true)}>
+          {!dashboardView && (
+            <li className="sidemenu-nav__items " onClick={() => (setDashboardView(true))}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 35.6">
             <path fill="#4f4fa4" d="M28.4,3.6h-1.8V0h-3.6v3.6H8.9V0H5.3v3.6H3.6C1.6,3.6,0,5.1,0,7.1L0,32c0,2,1.6,3.6,3.6,3.6h24.9c2,0,3.6-1.6,3.6-3.6V7.1C32,5.1,30.4,3.6,28.4,3.6z M28.4,32H3.6V12.4h24.9V32z M7.1,16H16v8.9H7.1V16z"/>
             </svg>
             <a >Dashboard</a>
           </li>
+          )}
+          
               
         </ul>
       </nav>
