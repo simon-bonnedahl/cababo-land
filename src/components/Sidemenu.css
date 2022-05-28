@@ -1,8 +1,9 @@
 .sidemenu-nav__cont {
-    position: fixed;
+    position: absolute;
     display: flex;
+    justify-content: space-between;
     width: 100px;
-    height: 55vh;
+    height: auto;
     top: 20vh;
     z-index: 100;
     background-color: rgba(32, 32, 46, 0.8);
@@ -25,27 +26,27 @@
     color: white;
   }
   .sidemenu-nav:first-child {
-    padding-top: 1.5rem;
+    padding-top: 0.5rem;
   }
   
   .sidemenu-nav__items {
-    padding-bottom: 4rem;
+    padding-bottom: 2rem;
     font-family: "roboto";
   }
   .sidemenu-nav__items a {
     position: relative;
     display: block;
-    top: -35px;
+    top: 0px;
     padding-left: 25px;
     padding-right: 15px;
     transition: all 0.3s ease;
     margin-left: 25px;
-    margin-right: 10px;
+    margin-right: 5px;
     text-decoration: none;
     color: white;
     font-family: "roboto";
-    font-weight: 100;
-    font-size: 1.35em;
+    font-weight: 2;
+    font-size: 1.1em;
   }
   .sidemenu-nav__items a:after {
     content: "";
@@ -79,14 +80,16 @@
   }
   @media screen and (min-width: 600px) {
     .sidemenu-nav__items img {
-        width: 32px;
-        height: 32px;
-        left: -40px;
+        width: 28px;
+        height: 28px;
+        left: -28px;
+        top: 20px;
       }
-    .nav__items svg {
-      width: 32px;
-      height: 32px;
-      left: -40px;
+    .sidemenu-nav__items svg {
+      width: 28px;
+      height: 29px;
+      left: -28px;
+      top:25px
     }
   }
   

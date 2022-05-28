@@ -14,7 +14,7 @@ import { doc, setDoc, getDoc} from "firebase/firestore";
 
 
 const Cell = ({pos, id, currentBuilding, setCurrentBuilding, buildMode, setBuildMode, targetedCell, setTargetedCell, startBuilding, db, landId, _t_lastCollected, CBOTokens, updateTokenBalance}) => {
-    const [metalness, setMetalness] = useState(0.3)
+    const [metalness, setMetalness] = useState(0.8)
     const [outline, setOutline] = useState(0.005)
     const [reload, setReload] = useState()
     var currentdate = new Date();
@@ -71,10 +71,10 @@ const Cell = ({pos, id, currentBuilding, setCurrentBuilding, buildMode, setBuild
 
     useEffect(() => {
         if(targetedCell.id === id){
-            setMetalness(0)
+            setMetalness(0.5)
             setOutline(0.04)
         }else{
-            setMetalness(0.4)
+            setMetalness(0.8)
             setOutline(0.005)
             
         }
@@ -215,7 +215,7 @@ const Cell = ({pos, id, currentBuilding, setCurrentBuilding, buildMode, setBuild
         <mesh position={pos} onClick={clickHandler}>
         <planeBufferGeometry attach="geometry" args={[1-outline, 1-outline]} />
     
-        <meshStandardMaterial metalness ={metalness} map={colorMap} normalMap={normalMap} roughnessMap={roughnessMap} heightMap={heightMap} />   
+        <meshStandardMaterial metalness ={metalness} map={colorMap} normalMap={normalMap} roughnessMap={roughnessMap} roughness={1} heightMap={heightMap} />   
         {building && (building.component)} 
     </mesh>
     

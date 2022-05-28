@@ -1,7 +1,8 @@
 import Web3 from 'web3';
 import { Suspense, useState, useEffect, useRef } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { MapControls, Stars, Sky } from '@react-three/drei';
+import { MapControls, Stars, Sky, SpotLight} from '@react-three/drei';
+import { Vector3 } from 'three'
 // Database
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, setDoc, collection, getDoc} from "firebase/firestore";
@@ -146,7 +147,7 @@ function App() {
 		setSunPositionZ(Math.sin(sunRotation))
 		setSunPositionY((Math.sin(sunAngle)/40 ) - 0.017)
 		setStarsCount(Math.round(6 + (Math.sin(sunAngle) * -6))*100)
-		console.log(starsCount)
+		console.log(sunPositionY)
 	
 	  }, 10)
 
@@ -242,7 +243,10 @@ function App() {
 			camera.position.set(pos[0], pos[1], pos[2])	
 		  })
 		  return null
+
+		  
 	}
+	
 
 
 	
@@ -259,12 +263,12 @@ function App() {
 			<Navbar web3Handler={web3Handler} account={account} balance={balance} CBOTokens={CBOTokens} landId={landId}/>
 			<Canvas camera={{ position: [0, 5, -10] }}>
 				<Suspense fallback={null}>
-				<Sky turbidity={20} rayleigh={4}  sunPosition={[sunPositionX, sunPositionY, sunPositionZ]}/>
+				<Sky turbidity={10} rayleigh={4}  sunPosition={[sunPositionX, sunPositionY, sunPositionZ]}/>
 				<Stars depth={100} fade={true} count={starsCount} ></Stars>
 
 				
-
-					<ambientLight intensity={0.4} />
+					<pointLight color="ffffff" intensity={0.3 + sunPositionY*10} lookAt={[5, 5, 0]} position={[-sunPositionX*100, sunPositionY*1000, -sunPositionZ*100]} />
+					<ambientLight intensity={0.8 + sunPositionY*10}/>
 					{landView ? (<Landview 	currentBuilding={currentBuilding} 
 											setCurrentBuilding={setCurrentBuilding}
 											buildMode={buildMode} 

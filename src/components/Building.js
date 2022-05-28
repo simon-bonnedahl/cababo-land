@@ -4,17 +4,17 @@ import {  useState, useEffect } from 'react';
 const Building = ({ position, size, landId, hoveringLandId, landInfo, setLandName, setLandOwner, setHasOwner, setLandId , setHoveringLandId}) => {
    var color = "#ea68dd" //"#009000"
    
-   const [metalness, setMetalness] = useState(0.2)
+   const [metalness, setMetalness] = useState(0.8)
    const [outline, setOutline] = useState(0.005)
    
    useEffect(() => {
     if(hoveringLandId == landId){
         //setColor("pink")
-        setMetalness(0)
+        setMetalness(0.5)
         setOutline(0.04)
     }else{
         //setColor("#00ff00")
-        setMetalness(0.2)
+        setMetalness(0.8)
         setOutline(0.005)
     }
    
