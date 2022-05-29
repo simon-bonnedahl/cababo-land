@@ -1,8 +1,8 @@
 import './Buildmenu.css'
-import HouseIcon from '../assets/House_Icon.png'
-import FarmIcon from '../assets/Farm_Icon.png'
-import TowerIcon from '../assets/Tower_Icon.png'
-import BackArrow from '../assets/back-arrow.svg'
+import HouseIcon from '../../assets/House_Icon.png'
+import FarmIcon from '../../assets/Farm_Icon.png'
+import TowerIcon from '../../assets/Tower_Icon.png'
+import BackArrow from '../../assets/back-arrow.svg'
 
 const Buildmenu = ({setBuildMode, MoveCamera, setCurrentBuilding, setTargetedCell}) => {
     const House = {

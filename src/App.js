@@ -12,14 +12,14 @@ import { getFirestore, doc, setDoc, collection, getDoc} from "firebase/firestore
 import './App.css';
 
 // Import Components
-import Navbar from './components/Navbar';
+import Navbar from './components/Interface/Navbar';
 import Plotview from './components/Plotview';
 import Landview from './components/Landview';
-import Sidemenu from './components/Sidemenu';
-import Buildmenu from './components/Buildmenu';
-import Dashboard from './components/Dashboard';
-import PlotTooltip from './components/PlotTooltip';
-import BuildingTooltip from './components/BuildingTooltip';
+import Sidemenu from './components/Interface/Sidemenu';
+import Buildmenu from './components/Interface/Buildmenu';
+import Dashboard from './components/Interface/Dashboard';
+import PlotTooltip from './components/Interface/PlotTooltip';
+import BuildingTooltip from './components/Interface/BuildingTooltip';
 
 // Import ABI
 import Land from './abis/Land.json';
@@ -244,7 +244,7 @@ function App() {
 	const updateTokenBalance = async (amount) => {
 		setCBOTokens(CBOTokens => (CBOTokens + amount));	
 	}
-	
+
 	async function docExists(docName, docId) {
 		const docRef = doc(db, docName, docId);
 		const docSnap = await getDoc(docRef);

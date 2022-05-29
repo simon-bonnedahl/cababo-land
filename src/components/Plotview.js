@@ -1,5 +1,4 @@
 import Plot from "./Plot";
-import Building from "./Building";
 import Plane from "./Plane";
 const Plotview = ({plots, hoveringLandId, setLandName, setLandOwner, setHasOwner, setLandId, setHoveringLandId}) => {
     return (
@@ -10,7 +9,8 @@ const Plotview = ({plots, hoveringLandId, setLandName, setLandOwner, setHasOwner
                     <Plot
                         key={index}
                         position={[(plot.id % 10)-5, (Math.floor(plot.id / 10))-5, 0.51]}
-                        size={[1, 1]}
+                        size={[1, 1, 0.01]}
+                        color={"#6f6fC4"}
                         landId={index + 1}
                         hoveringLandId={hoveringLandId}
                         landInfo={plot}
@@ -19,15 +19,18 @@ const Plotview = ({plots, hoveringLandId, setLandName, setLandOwner, setHasOwner
                         setHasOwner={setHasOwner}
                         setLandId={setLandId}
                         setHoveringLandId={setHoveringLandId}
+                        forSale={false}
                         
                     />
                 )
             } else {
                 return (
                  
-                    <Building
+                    <Plot
                         key={index}
                         position={[(plot.id % 10)-5, (Math.floor(plot.id / 10))-5, 0.5]}
+                        size={[0.98, 0.98, 0.2]}
+                        color={"#ea68dd"}
                         landId={index + 1}
                         hoveringLandId={hoveringLandId}
                         landInfo={plot}

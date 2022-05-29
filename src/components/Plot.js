@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-const Plot = ({ position, landId, hoveringLandId, landInfo, setLandOwner, setHasOwner, setLandId ,setHoveringLandId}) => {
-    const [color, setColor] = useState("#6f6fC4") //"#00ff00"
+const Plot = ({ position, size, color, landId, hoveringLandId, landInfo, setLandOwner, setHasOwner, setLandId ,setHoveringLandId, forSale}) => {
     const [metalness, setMetalness] = useState(0.8)
-    const [outline, setOutline] = useState(0.005)
-
+    const [outline, setOutline] = useState(0.01)
+    if(forSale){
+        color = "#ffff00"
+    }
     useEffect(() => {
         if(hoveringLandId === landId){
             //setColor("pink")
@@ -12,7 +13,7 @@ const Plot = ({ position, landId, hoveringLandId, landInfo, setLandOwner, setHas
         }else{
             //setColor("#00ff00")
             setMetalness(0.8)
-            setOutline(0.005)
+            setOutline(0.01)
         }
        
         
@@ -33,7 +34,7 @@ const Plot = ({ position, landId, hoveringLandId, landInfo, setLandOwner, setHas
     }
     return (
         <mesh position={position} onClick={clickHandler}>
-            <planeBufferGeometry attach="geometry" args={[1-outline, 1-outline]} />  
+            <boxBufferGeometry attach="geometry" args={[size[0]-outline, size[1]-outline, size[2]]} />
             <meshStandardMaterial color={color} emissive="#000000" metalness={metalness} roughness={0}/>
         </mesh>
         
