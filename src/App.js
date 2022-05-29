@@ -144,10 +144,10 @@ function App() {
 		setSunPositionZ(Math.sin(sunRotation))
 		setSunPositionY((Math.sin(sunAngle)/40 ) - 0.017)
 		setStarsCount(Math.round(6 + (Math.sin(sunAngle) * -6))*100)
-	
 	  }, 10)
 
 	useEffect(() => {
+		
 		loadBlockchainData()
 		loadDatabaseData()
 	
@@ -242,15 +242,9 @@ function App() {
 		}
 	}
 	const updateTokenBalance = async (amount) => {
-		console.log("Account has: " + CBOTokens + " CBOTokens")
-		
-		console.log("Collecting " + amount + " CBOTokens to account: " + account)
-		
-		setCBOTokens(CBOTokens => (CBOTokens + amount));
-		console.log("Account: " + account + " now has " + (CBOTokens) +  " CBOTokens")
-		
-		
+		setCBOTokens(CBOTokens => (CBOTokens + amount));	
 	}
+	
 	async function docExists(docName, docId) {
 		const docRef = doc(db, docName, docId);
 		const docSnap = await getDoc(docRef);
@@ -278,7 +272,6 @@ function App() {
 
 	
 	return (
-		
 		<div>	
 			
 			{dashboardView && (<Dashboard
@@ -297,7 +290,8 @@ function App() {
 					<pointLight color="#ffffff" intensity={0.3 + sunPositionY*10} lookAt={[5, 5, 0]} position={[-sunPositionX*100, sunPositionY*1000, -sunPositionZ*100]} />
 					<ambientLight intensity={1 + sunPositionY*10}/>
 
-					{!dashboardView && (landView ? (<Landview 	currentBuilding={currentBuilding} 
+					{!dashboardView && (landView ? (
+								<Landview 	currentBuilding={currentBuilding} 
 											setCurrentBuilding={setCurrentBuilding}
 											buildMode={buildMode} 
 											setBuildMode={setBuildMode}

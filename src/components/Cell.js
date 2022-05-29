@@ -3,9 +3,9 @@ import GrassTexture from '../assets/grass.jpeg'
 import { TextureLoader } from 'three';
 import { useLoader } from '@react-three/fiber';
 import { RepeatWrapping } from 'three';
-import House from './House'
-import Farm from './Farm'
-import Tower from './Tower'
+import House from './Buildings/House'
+import Farm from './Buildings/Farm'
+import Tower from './Buildings/Tower'
 
 import { doc, setDoc, getDoc} from "firebase/firestore"; 
 
@@ -13,55 +13,41 @@ import { doc, setDoc, getDoc} from "firebase/firestore";
 const Cell = ({pos, id, currentBuilding, setCurrentBuilding, buildMode, setBuildMode, targetedCell, setTargetedCell, startBuilding, db, landId, _t_lastCollected, CBOTokens, updateTokenBalance}) => {
     const [metalness, setMetalness] = useState(0.8)
     const [outline, setOutline] = useState(0.005)
-    const [reload, setReload] = useState()
-    var currentdate = new Date();
-    var b = {
-        name: null,
-        level: 1,
-        income: 0.1,
-        stored: 0,
-        t_lastCollected: _t_lastCollected,
-        component: null
-            }
+   
+    
+    
+    var _building = null
+    if(startBuilding){
+        var currentdate = new Date();
 
-    if(startBuilding != null){
-        //updatera stored genom att räkna ut skillnaden i timestamps
-        let name = startBuilding.split(":")[0]
-        let level = parseInt(startBuilding.split(":")[1])
-        let income = Math.round((0.1*level) * 100) / 100
+        let _name = startBuilding.split(":")[0]
+        let _level = parseInt(startBuilding.split(":")[1])
+        let _income = Math.round((0.1*_level) * 100) / 100
         let difference = currentdate.getTime() - _t_lastCollected;
         let minutesDifference = Math.floor(difference/1000/60);
-        let stored = (minutesDifference*income)/60
-        
-        b = {
-            name: name,
-            level: level,
-            income: income,
-            stored: (Math.floor(stored * 1000) / 1000),
+        let _stored = (minutesDifference*_income)/60
+        let _model = null;
+        if (_name === "Tower"){
+            _model = <Tower level={_level}/> 
+        }
+        if (_name === "Farm"){
+            _model = <Farm level={_level}/>  
+        }
+        if (_name === "House"){
+            _model = <House level={_level}/>  
+        }
+
+        _building = {
+            name: _name,
+            level: _level,
+            income: _income,
+            stored: (Math.floor(_stored * 1000) / 1000),
             t_lastCollected: _t_lastCollected,
-            component: null
+            model: _model
                 }
-        
-        if (b.name === "Tower"){
-            b.component = <Tower level={b.level}/>
-            
-        }
-        if (b.name === "Farm"){
-            b.component = <Farm level={b.level}/>
-            
-        }
-        if (b.name === "House"){
-            b.component = <House level={b.level}/>
-            
-        }
-           
+                
     }
-    const [building, setBuilding] = useState(b)
-    const [colorMap, normalMap, roughnessMap, heightMap] = useLoader(TextureLoader, GrassTexture) 
-
-    colorMap.wrapS = colorMap.wrapT = RepeatWrapping;
-    colorMap.repeat.set(1, 1);
-
+    const [building, setBuilding] = useState(_building)
     useEffect(() => {
         if(targetedCell.id === id){
             setMetalness(0.5)
@@ -71,17 +57,17 @@ const Cell = ({pos, id, currentBuilding, setCurrentBuilding, buildMode, setBuild
             setOutline(0.005)
             
         }
-        if(startBuilding != null){
-        let currentdate = new Date();
-        let difference = currentdate.getTime() - building['t_lastCollected'];
-        let minutesDifference = Math.floor(difference/1000/60);
-        let income = Math.round((0.1*building['level']) * 100) / 100
-        let stored = (minutesDifference*income)/60
-        building['stored'] = (Math.floor(stored * 1000) / 1000)
-        setBuilding(building)
+        if(building){
+            let currentdate = new Date();
+            let difference = currentdate.getTime() - building['t_lastCollected'];
+            let minutesDifference = Math.floor(difference/1000/60);
+            let income = Math.round((0.1*building['level']) * 100) / 100
+            let stored = (minutesDifference*income)/60
+            building['stored'] = (Math.floor(stored * 1000) / 1000)
+            setBuilding(building)
         }
         
-    }, [setMetalness, setOutline, targetedCell, id]);
+    }, [targetedCell, id]);
 
     const collect = () => {
         var currentdate = new Date();
@@ -89,8 +75,7 @@ const Cell = ({pos, id, currentBuilding, setCurrentBuilding, buildMode, setBuild
         building['stored'] = 0
         building['t_lastCollected'] = currentdate.getTime()
         setBuilding(building)
-        writeToDb()
-        setReload(!reload)
+        writeToDb(building)
     }
 
     const upgrade = () => {
@@ -113,36 +98,37 @@ const Cell = ({pos, id, currentBuilding, setCurrentBuilding, buildMode, setBuild
     }
         
         if (building.name === "Tower"){
-            building.component = <Tower level={building.level}/>
+            building.model = <Tower level={building.level}/>
             
         }
         if (building.name === "Farm"){
-            building.component = <Farm level={building.level}/>
+            building.model = <Farm level={building.level}/>
             
         }
         if (building.name === "House"){
-            building.component = <House level={building.level}/>
+            building.model = <House level={building.level}/>
             
         }
         
         setBuilding(building)
-        writeToDb()
-        setReload(!reload)
+        writeToDb(building)
     }
-    async function writeToDb(){
+    
+    async function writeToDb(_building){
         try {
             setDoc(doc(db, landId.toString(), id.toString()), {
-                building: building['name'],
-                level: building['level'],
-                income: building['income'],
+                building: _building['name'],
+                level: _building['level'],
+                income: _building['income'],
                 pos: pos,
-                stored: building['stored'],
-                t_lastCollected: building.t_lastCollected
+                stored: _building['stored'],
+                t_lastCollected: _building.t_lastCollected
             })
         }catch (error){
             console.log(error)
         }
     }
+
     async function docExists(docName, docId) {
 		const docRef = doc(db, docName, docId);
 		const docSnap = await getDoc(docRef);
@@ -164,7 +150,7 @@ const Cell = ({pos, id, currentBuilding, setCurrentBuilding, buildMode, setBuild
                          collect: collect
 
         })
-        console.log("clicked on")
+        
 
         if(buildMode){     
            build()
@@ -172,28 +158,34 @@ const Cell = ({pos, id, currentBuilding, setCurrentBuilding, buildMode, setBuild
    
     }
     async function build(){
+            var currentdate = new Date();   
 			if (await docExists(landId.toString(), id.toString()) === false) {
                 console.log("Cell not occupied")
                 if(CBOTokens >= currentBuilding.buildCost){      
-
                 updateTokenBalance(-currentBuilding.buildCost)
-                building['name'] = currentBuilding['name']
-                building['t_lastCollected'] = currentdate.getTime()
+                _building = {
+                    name: currentBuilding['name'],
+                    level: 1,
+                    income: 0.1,
+                    stored: 0,
+                    t_lastCollected: currentdate.getTime(),
+                    model: null
+                        }
+                 
 
-                if (building['name'] === "Tower"){
-                    building['component'] = <Tower level={building['level']}/>
+                if (_building['name'] === "Tower"){
+                   _building['model'] = <Tower level={1}/>
                     
                 }
-                if (building['name'] === "Farm"){
-                    building['component'] = <Farm level={building['level']}/>
+                if (_building['name'] === "Farm"){
+                    _building['model'] = <Farm level={1}/>
                 }
-                if (building['name'] === "House"){
-                    building['component']  = <House level={building['level']}/>
+                if (_building['name'] === "House"){
+                    _building['model']  = <House level={1}/>
                     
                 }
-                setBuilding(building)
-                writeToDb()
-                setReload(!reload)
+                setBuilding(_building)
+                writeToDb(_building)
                 }else{
                     window.alert("Not enough CBOTokens")
                 }
@@ -204,12 +196,15 @@ const Cell = ({pos, id, currentBuilding, setCurrentBuilding, buildMode, setBuild
             }
         
     }
+    const colorMap = useLoader(TextureLoader, GrassTexture) 
+    colorMap.wrapS = colorMap.wrapT = RepeatWrapping;
+    colorMap.repeat.set(1, 1);
     return (
         <mesh position={pos} onClick={clickHandler}>
         <planeBufferGeometry attach="geometry" args={[1-outline, 1-outline]} />
     
-        <meshStandardMaterial metalness ={metalness} map={colorMap} emissive="#000000" roughness={1} heightMap={heightMap} />   
-        {building && (building.component)} 
+        <meshStandardMaterial metalness = {metalness} map={colorMap} emissive="#000000" roughness={0} />   
+        {building && (building.model)} 
     </mesh>
     
     );

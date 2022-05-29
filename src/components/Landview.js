@@ -4,12 +4,11 @@ import { useState, useEffect, Fragment} from "react";
 import { getDocs, collection } from "firebase/firestore";
 
 const Landview = ({currentBuilding, setCurrentBuilding, buildMode, setBuildMode, targetedCell, setTargetedCell, db, landId, landOwner, CBOTokens, updateTokenBalance}) => {
-    
     const [loading, setLoading] = useState(true)
-
-    let id = 0
     const [cells, setCells] = useState([])
+    
     useEffect(() => { 
+        let id = 0
         const fetchCellData = async () => {
             let querySnapshot = await getDocs(collection(db, landId.toString()))
 

@@ -292,7 +292,7 @@ label {
 
 input {
   display: block;
-  width: 40%;
+  width: 44%;
   border: none;
   border-radius: 0;
   color: white;
@@ -329,7 +329,7 @@ input:-webkit-autofill {
   margin-left: 85px;
   background: rgba(255, 255, 255, 0.5);
   content: "";
-  width: 30%;
+  width: 32%;
   height: 3px;
   transition: 0.3s ease;
   position: relative;

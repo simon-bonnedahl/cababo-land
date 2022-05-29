@@ -47,7 +47,7 @@ const PlotTooltip= ({landId, landOwner, cost, hasOwner, mintPlot, landView, setL
                                 <label for="price">Price(ETH)</label>
                                 
                                 
-                                <div class="bar"></div>
+                                <div className="bar"></div>
                             </div>
                             <button onClick={() => (sellPlot(landId, web3.utils.toWei(sellPrice.toString(), 'ether')))} className='button info--buy'>Sell Plot</button>
                         </div> 
@@ -59,7 +59,7 @@ const PlotTooltip= ({landId, landOwner, cost, hasOwner, mintPlot, landView, setL
                             <div className="inputfield">
                                 <input type="number" id="price" required="required" value={offerPrice} onChange={(e) => setOfferPrice(e.target.value)}/>
                                 <label for="price">Price(ETH)</label>
-                                <div class="bar"></div>
+                                <div className="bar"></div>
                             </div>
                             <button onClick={() => (console.log("offer"))} className='button info--buy'>Offer</button>
                 

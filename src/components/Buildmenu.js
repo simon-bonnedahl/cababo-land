@@ -27,23 +27,23 @@ const Buildmenu = ({setBuildMode, MoveCamera, setCurrentBuilding, setTargetedCel
 
       
 
-      <nav class="buildmenu-nav__cont">
-        <ul class="buildmenu-nav">
-        <li class="buildmenu-nav__items" onClick={() => (setBuildMode(false), setCurrentBuilding(null))}>
+      <nav className="buildmenu-nav__cont">
+        <ul className="buildmenu-nav">
+        <li className="buildmenu-nav__items" onClick={() => (setBuildMode(false), setCurrentBuilding(null))}>
           <img src={BackArrow} ></img>
             <a >Back</a>
           </li>
 
-          <li class="buildmenu-nav__items " onClick={() => {setCurrentBuilding(House)}}>
+          <li className="buildmenu-nav__items " onClick={() => {setCurrentBuilding(House)}}>
           <img src={HouseIcon} ></img>
             <a >House</a>
           </li>
           
-          <li class="buildmenu-nav__items " onClick={() => {setCurrentBuilding(Farm)}}>
+          <li className="buildmenu-nav__items " onClick={() => {setCurrentBuilding(Farm)}}>
           <img src={FarmIcon} ></img>
             <a >Farm</a>
           </li>
-          <li class="buildmenu-nav__items " onClick={() => {setCurrentBuilding(Tower)}}>
+          <li className="buildmenu-nav__items " onClick={() => {setCurrentBuilding(Tower)}}>
           <img src={TowerIcon} ></img>
             <a >Tower</a>
           </li>
