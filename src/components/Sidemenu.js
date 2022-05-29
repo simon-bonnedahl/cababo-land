@@ -1,5 +1,5 @@
 import './Sidemenu.css'
-import HammerIcon from '../assets/hammer2.svg'
+import HammerIcon from '../assets/hammer.svg'
 
 const Sidemenu = ({setBuildMode, landView, setLandView, dashboardView, setDashboardView, landOwner, account, setLandId}) => {
     return (

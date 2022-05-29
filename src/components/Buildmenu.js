@@ -29,7 +29,7 @@ const Buildmenu = ({setBuildMode, MoveCamera, setCurrentBuilding, setTargetedCel
 
       <nav class="buildmenu-nav__cont">
         <ul class="buildmenu-nav">
-        <li class="buildmenu-nav__items " onClick={() => (setBuildMode(false), setCurrentBuilding(null))}>
+        <li class="buildmenu-nav__items" onClick={() => (setBuildMode(false), setCurrentBuilding(null))}>
           <img src={BackArrow} ></img>
             <a >Back</a>
           </li>

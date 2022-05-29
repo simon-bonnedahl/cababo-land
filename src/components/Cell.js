@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react';
-import GrassColor from '../assets/grass.jpeg'
-import GrassNormal from '../assets/Stylized_Grass_003_normal.jpg'
-import GrassRoughness from '../assets/Stylized_Grass_003_roughness.jpg'
-import GrassHeight from '../assets/Stylized_Grass_003_height.png'
+import GrassTexture from '../assets/grass.jpeg'
 import { TextureLoader } from 'three';
 import { useLoader } from '@react-three/fiber';
 import { RepeatWrapping } from 'three';
@@ -60,12 +57,8 @@ const Cell = ({pos, id, currentBuilding, setCurrentBuilding, buildMode, setBuild
            
     }
     const [building, setBuilding] = useState(b)
-    const [colorMap, normalMap, roughnessMap, heightMap] = useLoader(TextureLoader, [ 
-        GrassColor,
-        GrassNormal,
-        GrassRoughness,
-        GrassHeight
-      ]) 
+    const [colorMap, normalMap, roughnessMap, heightMap] = useLoader(TextureLoader, GrassTexture) 
+
     colorMap.wrapS = colorMap.wrapT = RepeatWrapping;
     colorMap.repeat.set(1, 1);
 
@@ -215,7 +208,7 @@ const Cell = ({pos, id, currentBuilding, setCurrentBuilding, buildMode, setBuild
         <mesh position={pos} onClick={clickHandler}>
         <planeBufferGeometry attach="geometry" args={[1-outline, 1-outline]} />
     
-        <meshStandardMaterial metalness ={metalness} map={colorMap} normalMap={normalMap} roughnessMap={roughnessMap} roughness={10} heightMap={heightMap} />   
+        <meshStandardMaterial metalness ={metalness} map={colorMap} emissive="#000000" roughness={1} heightMap={heightMap} />   
         {building && (building.component)} 
     </mesh>
     

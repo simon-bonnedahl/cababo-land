@@ -53,7 +53,7 @@
     top: 0;
     left: 0;
     border-radius: 2px;
-    background: radial-gradient(circle at 94.02% 88.03%, #54a4ff, transparent 100%);
+    background: radial-gradient(circle at 94.02% 88.03%, #4f4fa4, transparent 100%);
     opacity: 0;
     transition: all 0.5s ease;
     z-index: -10;
@@ -82,10 +82,9 @@
         left: -40px;
       }
     .buildmenu-nav__items svg {
-      width: 32px;
-      height: 32px;
+      width: 26px;
+      height: 26px;
       left: -40px;
     }
   }
-  
   
