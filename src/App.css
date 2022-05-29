@@ -34,7 +34,7 @@ canvas {
 }
 
 h1 {
-  margin: 0.75em auto 0;
+  margin: 0.3em auto 0;
   font-family: "roboto";
   font-weight: 100;
 }
@@ -108,6 +108,9 @@ a {
 .info {
   font-family: "roboto";
   position: absolute;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 	bottom: 10px;
 	right: 10px;
   z-index: 1;
@@ -119,7 +122,6 @@ a {
 	width: 500px;
 	height: 270px;
 
-  padding: 0.25em 2em;
 }
 
 .info--owner {
@@ -220,4 +222,129 @@ svg {
 
 .purple {
   background-color: #4f4fa4
+}
+.info--header{
+  text-align: center;
+  width: 100%;
+  height: 25%;
+  font-size: 14px;
+}
+
+.info--lower{
+  display: flex;
+  justify-content: space-between;
+  height: 60%;
+}
+.info--lower-left{
+  height: 80%;
+  width: 50%;
+  text-indent: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.info--lower-right{
+  height: 80%;
+  width: 50%;
+  text-indent: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+.divider {
+  display: flex;
+}
+.divider:before, .divider:after {
+  content: "";
+  flex: 1;
+}
+
+.line {
+  align-items: center;
+}
+.line:before, .line:after {
+  height: 1px;
+  margin: -1px
+}
+.glow:before, .glow:after {
+  height: 3px;
+  -webkit-filter: blur(3px);
+  border-radius: 5px;
+}
+.glow:before {
+  background: linear-gradient(to left, #4f4fa4, #4f4fa4, hotpink, yellow);
+}
+.glow:after {
+  background: linear-gradient(to right, #4f4fa4, #4f4fa4, hotpink, yellow);
+}
+
+label {
+  position: absolute;
+  top: 0px;
+  transform: translateX(40%);
+  color: rgba(255, 255, 255, 0.5);
+  font: 100 14px Roboto;
+  cursor: text;
+  transition: 0.25s ease;
+}
+
+input {
+  display: block;
+  width: 40%;
+  border: none;
+  border-radius: 0;
+  color: white;
+  background: rgba(0, 0, 0, 0);
+  font-size: 14px;
+  transition: 0.3s ease;
+  margin-left: 85px;
+  margin-top: 20px;
+  text-indent: 30px;
+}
+input:valid ~ label {
+  top: -20px;
+  font: 100 14px Roboto;
+  color: rgba(255, 255, 255, 0.5);
+  opacity: 0%;
+}
+input:focus {
+  outline: none;
+}
+input:focus ~ label {
+  top: -20px;
+  font: 100 14px Roboto;
+  color: #4f4fa4;
+}
+input:focus ~ .bar:before {
+  transform: translateX(0);
+}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #333 inset;
+  -webkit-text-fill-color: white !important;
+}
+
+.bar {
+  margin-left: 85px;
+  background: rgba(255, 255, 255, 0.5);
+  content: "";
+  width: 30%;
+  height: 3px;
+  transition: 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.bar:before {
+  content: "";
+  position: absolute;
+  width: 110%;
+  height: 150%;
+  background: #4f4fa4;
+  transform: translateX(-100%);
+  margin-left: -20px;
+}
+
+.inputfield{
+  position: relative;
 }

@@ -1,7 +1,7 @@
 import './Sidemenu.css'
 import HammerIcon from '../assets/hammer2.svg'
 
-const Sidemenu = ({setBuildMode, landView, setLandView, dashboardView, setDashboardView, landOwner, account}) => {
+const Sidemenu = ({setBuildMode, landView, setLandView, dashboardView, setDashboardView, landOwner, account, setLandId}) => {
     return (
 
       
@@ -29,7 +29,7 @@ const Sidemenu = ({setBuildMode, landView, setLandView, dashboardView, setDashbo
            <a>Map</a>
           </li>)}
           {!dashboardView && (
-            <li className="sidemenu-nav__items " onClick={() => (setDashboardView(true))}>
+            <li className="sidemenu-nav__items " onClick={() => (setDashboardView(true), setLandView(false), setLandId(null))}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 35.6">
             <path fill="#4f4fa4" d="M28.4,3.6h-1.8V0h-3.6v3.6H8.9V0H5.3v3.6H3.6C1.6,3.6,0,5.1,0,7.1L0,32c0,2,1.6,3.6,3.6,3.6h24.9c2,0,3.6-1.6,3.6-3.6V7.1C32,5.1,30.4,3.6,28.4,3.6z M28.4,32H3.6V12.4h24.9V32z M7.1,16H16v8.9H7.1V16z"/>
             </svg>

@@ -181,7 +181,7 @@ const Cell = ({pos, id, currentBuilding, setCurrentBuilding, buildMode, setBuild
     async function build(){
 			if (await docExists(landId.toString(), id.toString()) === false) {
                 console.log("Cell not occupied")
-                if(CBOTokens > currentBuilding.buildCost){      
+                if(CBOTokens >= currentBuilding.buildCost){      
 
                 updateTokenBalance(-currentBuilding.buildCost)
                 building['name'] = currentBuilding['name']

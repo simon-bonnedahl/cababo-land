@@ -28,7 +28,7 @@ const Plot = ({ position, landId, hoveringLandId, landInfo, setLandOwner, setHas
         
 
         if (landInfo.owner === '0x0000000000000000000000000000000000000000') {
-            setLandOwner('No Owner')
+            setLandOwner('None')
             setHasOwner(false)
         } else {
             setLandOwner(landInfo.owner)

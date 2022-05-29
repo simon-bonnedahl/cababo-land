@@ -39,7 +39,7 @@ function App() {
 	const [landContract, setLandContract] = useState(null)
 	const [CBOTokenContract, setCBOTokenContract] = useState(null)
 
-	const [cost, setCost] = useState(0)
+
 	const [plots, setPlots] = useState(null)
 	const [landId, setLandId] = useState(null)
 	const [hoveringLandId, setHoveringLandId] = useState(null)
@@ -101,8 +101,6 @@ function App() {
 			setCBOTokenContract(CBOTokenContract)
 			CBOTokenContract.methods.issueToken(0x40CA26dd1141987a92ae88479d03dba2f145391F, 300*10**18)
 
-			const cost = await land.methods.cost().call()
-			setCost(web3.utils.fromWei(cost.toString(), 'ether'))
 
 			const plots = await land.methods.getPlots().call()
 			setPlots(plots)
@@ -169,11 +167,15 @@ function App() {
 	}, [account, reload, CBOTokens])
 
 	const sellPlot = async (_id, price) => {
+		if(price > 0){
 		await landContract.methods.putPlotUpForSale(_id, price).send({from: account})
 		const plots = await landContract.methods.getPlots().call()
 		setPlots(plots)
 
 		setReload(!reload)
+		}else{
+			console.log("Cant sell for 0")
+		}
 
 
 	}
@@ -211,14 +213,14 @@ function App() {
 
 			//Skriv in kontot i databasen om det inte redan existerar
 
-			
-			if (!docExists('accounts', account)) {
+			if (await docExists('accounts', account) === false) {
 				console.log("adding a new account to database")
 				try {
 					await setDoc(doc(db, "accounts", account), {
 						level: 1,
 						CBOTokens: 1	
 					});
+					setReload(!reload)
 				}catch (error){
 					console.log(error)
 				}
@@ -333,8 +335,9 @@ function App() {
 														   dashboardView={dashboardView}
 														   setDashboardView={setDashboardView}
 														   landOwner={landOwner}
-														   account={account}>
-												</Sidemenu>))}
+														   account={account}
+														   setLandId={setLandId}
+												/>))}
 			
 			{landView ? 
 					(<BuildingTooltip 	reload={reload}
