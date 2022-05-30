@@ -9,7 +9,7 @@ const Plotview = ({plots, hoveringLandId, setLandName, setLandOwner, setHasOwner
                     <Plot
                         key={index}
                         position={[(plot.id % 10)-5, (Math.floor(plot.id / 10))-5, 0.51]}
-                        size={[1, 1, 0.01]}
+                        size={[0.99, 0.99, 0.01]}
                         color={"#6f6fC4"}
                         landId={index + 1}
                         hoveringLandId={hoveringLandId}
@@ -29,7 +29,7 @@ const Plotview = ({plots, hoveringLandId, setLandName, setLandOwner, setHasOwner
                     <Plot
                         key={index}
                         position={[(plot.id % 10)-5, (Math.floor(plot.id / 10))-5, 0.5]}
-                        size={[0.98, 0.98, 0.2]}
+                        size={[0.95, 0.95, 0.2]}
                         color={"#ea68dd"}
                         landId={index + 1}
                         hoveringLandId={hoveringLandId}
