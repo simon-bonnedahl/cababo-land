@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import GrassTexture from '../assets/grass.jpeg'
+import GrassTexture from '../assets/textures/grass.jpeg'
 import { TextureLoader } from 'three';
 import { useLoader } from '@react-three/fiber';
 import { RepeatWrapping } from 'three';
-import House from './Buildings/House'
-import Farm from './Buildings/Farm'
-import Tower from './Buildings/Tower'
+import House from './buildings/House'
+import Farm from './buildings/Farm'
+import Tower from './buildings/Tower'
 
 import { doc, setDoc, getDoc} from "firebase/firestore"; 
 

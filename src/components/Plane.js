@@ -1,7 +1,7 @@
 import { DoubleSide } from "three"
-import texture_1 from '../assets/stone3Texture_1.jpeg'
-import texture_2 from '../assets/stone3Texture_2.jpeg'
-import texture_3 from '../assets/stone3Texture_3.jpeg'
+import texture_1 from '../assets/textures/stone3Texture_1.jpeg'
+import texture_2 from '../assets/textures/stone3Texture_2.jpeg'
+import texture_3 from '../assets/textures/stone3Texture_3.jpeg'
 import { TextureLoader, RepeatWrapping } from 'three';
 import { useLoader } from '@react-three/fiber';
 

@@ -12,14 +12,14 @@ import { getFirestore, doc, setDoc, collection, getDoc} from "firebase/firestore
 import './App.css';
 
 // Import Components
-import Navbar from './components/Interface/Navbar';
+import Navbar from './components/interface/Navbar';
 import Plotview from './components/Plotview';
 import Landview from './components/Landview';
-import Sidemenu from './components/Interface/Sidemenu';
-import Buildmenu from './components/Interface/Buildmenu';
-import Dashboard from './components/Interface/Dashboard';
-import PlotTooltip from './components/Interface/PlotTooltip';
-import BuildingTooltip from './components/Interface/BuildingTooltip';
+import Sidemenu from './components/interface/Sidemenu';
+import Buildmenu from './components/interface/Buildmenu';
+import Dashboard from './components/interface/Dashboard';
+import PlotTooltip from './components/interface/PlotTooltip';
+import BuildingTooltip from './components/interface/BuildingTooltip';
 
 // Import ABI
 import Land from './abis/Land.json';
