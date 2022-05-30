@@ -119,11 +119,14 @@ function App() {
 		}
 	}
 	const loadDatabaseData = async () => {
-		console.log("loading db")
+		console.log("loading account from databse")
 		const docRef = doc(db, "accounts", account);
 		const docSnap = await getDoc(docRef);
 		if (docSnap.exists()) {
+			console.log("account found")
 			setCBOTokens(docSnap.data()['CBOTokens'])
+		}else{
+			console.log("account not found")
 		}
 	}
 
@@ -131,7 +134,7 @@ function App() {
 	const web3Handler = async () => {
 		if (web3) {
 			const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-			
+			setCBOTokens(0)
 			setAccount(accounts[0])
 			
 		}
@@ -151,19 +154,7 @@ function App() {
 		loadBlockchainData()
 		loadDatabaseData()
 	
-		
-		if(CBOTokens != null){
-		try {
-			
-			setDoc(doc(db, "accounts", account), {
-				level: 1,
-				CBOTokens: CBOTokens
-			})		
-			
-			}catch (error){
-				console.log(error)
-			}
-		}
+	
 	}, [account, reload, CBOTokens])
 
 	const sellPlot = async (_id, price) => {
@@ -209,7 +200,7 @@ function App() {
 			setLandOwner(plots[_id - 1].owner)
 			setHasOwner(true)
 
-			setReload(!reload)
+			
 
 			//Skriv in kontot i databasen om det inte redan existerar
 
@@ -220,7 +211,7 @@ function App() {
 						level: 1,
 						CBOTokens: 1	
 					});
-					setReload(!reload)
+					
 				}catch (error){
 					console.log(error)
 				}
@@ -232,6 +223,7 @@ function App() {
 			console.log(error)
 			window.alert('Error occurred when buying')
 		}
+		setReload(!reload)
 	}
 	const mintTokens = async (amount) => {
 		try {
@@ -243,6 +235,16 @@ function App() {
 	}
 	const updateTokenBalance = async (amount) => {
 		setCBOTokens(CBOTokens => (CBOTokens + amount));	
+		try {
+			
+			setDoc(doc(db, "accounts", account), {
+				level: 1,
+				CBOTokens: CBOTokens + amount
+			})		
+			
+			}catch (error){
+				console.log(error)
+			}
 	}
 
 	async function docExists(docName, docId) {
