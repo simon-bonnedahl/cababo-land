@@ -6,7 +6,7 @@ import { getDocs, collection } from "firebase/firestore";
 const Landview = ({currentBuilding, setCurrentBuilding, buildMode, setBuildMode, targetedCell, setTargetedCell, db, landId, landOwner, CBOTokens, updateTokenBalance}) => {
     const [loading, setLoading] = useState(true)
     const [cells, setCells] = useState([])
-    
+
     useEffect(() => { 
         let id = 0
         const fetchCellData = async () => {
@@ -74,7 +74,7 @@ const Landview = ({currentBuilding, setCurrentBuilding, buildMode, setBuildMode,
                        </Fragment>
                     )
             })}
-            <Plane height={10} width={10} depth={-1} topColor={"#FFFFFF"}/>
+            <Plane height={10} width={10} depth={1} topColor={"#FFFFFF"}/>
         
             </group>
         )

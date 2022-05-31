@@ -203,7 +203,7 @@ const Cell = ({pos, id, currentBuilding, setCurrentBuilding, buildMode, setBuild
         <mesh position={pos} onClick={clickHandler}>
         <planeBufferGeometry attach="geometry" args={[1-outline, 1-outline]} />
     
-        <meshStandardMaterial metalness = {metalness} map={colorMap} emissive="#000000" roughness={0} />   
+        <meshStandardMaterial metalness = {metalness} map={colorMap} emissive="#000000" roughness={1} />   
         {building && (building.model)} 
     </mesh>
     

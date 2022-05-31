@@ -5,17 +5,17 @@ import texture_3 from '../assets/textures/stone3Texture_3.jpeg'
 import { TextureLoader, RepeatWrapping } from 'three';
 import { useLoader } from '@react-three/fiber';
 
-const Plane = ({width, height, depth, topColor}) => {
+const Plane = ({width, height, depth}) => {
     const colorMap1 = useLoader(TextureLoader, texture_1) 
     colorMap1.wrapS = colorMap1.wrapT = RepeatWrapping;
     colorMap1.repeat.set(10, 1);
     const colorMap2 = useLoader(TextureLoader, texture_2) 
-    colorMap2.wrapS = colorMap2.wrapT = RepeatWrapping;
+    colorMap2.wrapT = RepeatWrapping;
     colorMap2.repeat.set(1, 10);
 
     const colorMap3 = useLoader(TextureLoader, texture_3) 
     colorMap3.wrapS = colorMap3.wrapT = RepeatWrapping;
-    colorMap3.repeat.set(10, 10);
+    colorMap3.repeat.set(3, 3);
     
     return (
         <mesh position={[-0.5, -0.5, 0] }>
@@ -25,8 +25,11 @@ const Plane = ({width, height, depth, topColor}) => {
             <meshStandardMaterial attachArray="material" map={colorMap1}  side={DoubleSide}/>
             <meshStandardMaterial attachArray="material" map={colorMap1}  side={DoubleSide}/>
 
+            <meshStandardMaterial attachArray="material" color="#ffffff" side={DoubleSide}/>
             <meshStandardMaterial attachArray="material" map={colorMap3} side={DoubleSide}/>
-            <meshStandardMaterial attachArray="material" color={topColor} side={DoubleSide}/>
+            
+            
+            
 
             
         </mesh>

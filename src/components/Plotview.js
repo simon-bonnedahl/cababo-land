@@ -44,7 +44,7 @@ const Plotview = ({plots, hoveringLandId, setLandName, setLandOwner, setHasOwner
                 )
             }
         })}
-           <Plane height={10} width={10} depth={-1} color={"#FFFF00"}/>
+           <Plane height={10} width={10} depth={1}/>
             </group>
         
         

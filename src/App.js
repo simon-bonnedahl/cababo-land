@@ -296,8 +296,9 @@ function App() {
 				<Stars depth={100} fade={true} count={starsCount} ></Stars>
 
 				
-					<pointLight color="#ffffff" intensity={0.3 + sunPositionY*10} lookAt={[5, 5, 0]} position={[-sunPositionX*100, sunPositionY*1000, -sunPositionZ*100]} />
-					<ambientLight intensity={1 + sunPositionY*10}/>
+					<pointLight color="#ffffff" intensity={1 + sunPositionY*10} position={[sunPositionX*100, sunPositionY*1000, sunPositionZ*100]} />
+					<pointLight color="#ffffff" intensity={0.4 + sunPositionY*2} position={[0, 1000, 0]} />
+					<ambientLight intensity={0.3}/>
 
 					{!dashboardView && (landView ? (
 								<Landview 	currentBuilding={currentBuilding} 
