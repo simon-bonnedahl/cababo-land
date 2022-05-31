@@ -145,10 +145,9 @@ a {
   font-size: 12px;
 }
 .cbo-balance{
+  margin-left: 0px;
 }
-.eth-balance{
-  margin-left: 50px;
-}
+
 
 .landId{
   width: 200px;

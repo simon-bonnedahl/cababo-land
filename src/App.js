@@ -99,7 +99,7 @@ function App() {
 			setLandContract(land)
 			const CBOTokenContract = new web3.eth.Contract(CBOToken.abi, CBOToken.networks[networkId].address)
 			setCBOTokenContract(CBOTokenContract)
-			CBOTokenContract.methods.issueToken(0x40CA26dd1141987a92ae88479d03dba2f145391F, 300*10**18)
+			
 
 
 			const plots = await land.methods.getPlots().call()
@@ -227,20 +227,23 @@ function App() {
 	}
 	const mintTokens = async (amount) => {
 		try {
-			await CBOTokenContract.methods.issueToken(account, amount*(10**18))
+			await CBOTokenContract.methods.mintToken(account, (amount*(10**18)).toString()).send({from: account, amount: 10000000})
 			console.log("minting tokens")
+			updateTokenBalance(-amount)
 		} catch (error) {
+			console.log(error)
 			window.alert('Error occurred when minting')
 		}
 	}
 	const updateTokenBalance = async (amount) => {
-		setCBOTokens(CBOTokens => (CBOTokens + amount));	
+			
 		try {
 			
 			setDoc(doc(db, "accounts", account), {
 				level: 1,
 				CBOTokens: CBOTokens + amount
 			})		
+			setCBOTokens(CBOTokens => (CBOTokens + amount));
 			
 			}catch (error){
 				console.log(error)
@@ -279,6 +282,10 @@ function App() {
 			{dashboardView && (<Dashboard
 								db={db}
 								account={account}
+								CBOTokenContract={CBOTokenContract}
+								CBOTokens={CBOTokens}
+								mintTokens={mintTokens}
+								
 							/>) }
 			
 			<div>

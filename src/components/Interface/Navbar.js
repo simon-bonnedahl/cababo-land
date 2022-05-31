@@ -1,4 +1,4 @@
-
+import Logo from '../logo/Logo'
 const Navbar = ({ web3Handler, account , balance, CBOTokens, landId}) => {
     return (
         <nav className="flex-between">
@@ -27,15 +27,19 @@ const Navbar = ({ web3Handler, account , balance, CBOTokens, landId}) => {
             
             {account ? (
             <div className="balances flex">
-            <h1 className="cbo-balance">{(Math.round((CBOTokens) * 1000) / 1000) + " CBO"}</h1>
             <h1 className="eth-balance">{(Math.round((balance) * 1000) / 1000) + " ETH"}</h1>
+            <h1 className="cbo-balance">{(Math.round((CBOTokens) * 1000) / 1000) + " CBO"}</h1>
+            
+            <Logo size={50}/>
             </div>)
             :
-            (<div className="balances flex"></div>)}
+            (<div className="balances flex">
+                <Logo size={50}/>
+            </div>)}
             
             
             
-            
+        
         </nav>
     )
 }
