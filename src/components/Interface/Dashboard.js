@@ -85,8 +85,10 @@ const Dashboard = ({db, account, CBOTokenContract, CBOTokens, mintTokens}) => {
                 </div>
                 <div className="right">
                 <div className="section-h40 round-border opacity-10 center-text">
-                    <h1>CBOToken value</h1>
-                    
+                    <div className="header">
+                    CBOToken value
+                    <Logo size={30}/>
+                    </div>
                     ?
                 </div>
                 <div className="section-h25 round-border opacity-10">
