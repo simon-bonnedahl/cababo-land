@@ -35,7 +35,7 @@ const Plot = ({ position, size, color, landId, hoveringLandId, landInfo, setLand
     return (
         <mesh position={position} onClick={clickHandler}>
             <boxBufferGeometry attach="geometry" args={[size[0]-outline, size[1]-outline, size[2]]} />
-            <meshStandardMaterial color={color} emissive="#000000" metalness={metalness} roughness={0.4}/>
+            <meshStandardMaterial color={color} metalness={metalness} roughness={0.4}/>
         </mesh>
         
     );
