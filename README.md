@@ -4,13 +4,13 @@ Cababo Land is a Web3 project currently under development
 ## Preview
 
 ### Connect your wallet
-![Connect Account](https://github.com/simon-bonnedahl/CababoLand/blob/main/preview_1.gif)
+![Connect Account](https://github.com/simon-bonnedahl/CababoLand/blob/main/previews/preview_1.gif)
 ### Mint a land property
-![Buy land](https://github.com/simon-bonnedahl/CababoLand/blob/main/preview_2.gif)
+![Buy land](https://github.com/simon-bonnedahl/CababoLand/blob/main/previews/preview_2.gif)
 ### Build 
-![Build](https://github.com/simon-bonnedahl/CababoLand/blob/main/preview_3.gif)
+![Build](https://github.com/simon-bonnedahl/CababoLand/blob/main/previews/preview_3.gif)
 ### Upgrade
-![Upgrade](https://github.com/simon-bonnedahl/CababoLand/blob/main/preview_4.gif)
+![Upgrade](https://github.com/simon-bonnedahl/CababoLand/blob/main/previews/preview_4.gif)
 
 ## Tools
 
