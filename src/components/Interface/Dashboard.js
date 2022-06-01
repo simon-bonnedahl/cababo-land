@@ -124,9 +124,9 @@ const Dashboard = ({db, account, LandContract, CBOTokenContract, CBOTokens, mint
             <div className="left round-border opacity-10">
                 </div>
                 <div className="right round-border opacity-10">
-                <p>Total CBOTokens: {totalCBO}</p>
-                <p>Minted CBOTokens: {mintedCBO}</p>
-                <p>Unminted CBOTokens: {unmintedCBO}</p>
+                <p>Total CBOTokens: {(Math.round((totalCBO) * 1000) / 1000)}</p>
+                <p>Minted CBOTokens: {(Math.round((mintedCBO) * 1000) / 1000)}</p>
+                <p>Unminted CBOTokens: {(Math.round((unmintedCBO) * 1000) / 1000)}</p>
                 <button className="button w50 center" onClick={() => mint()}>Mint CBOTokens </button>
                 
                 

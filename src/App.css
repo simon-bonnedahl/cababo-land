@@ -150,8 +150,8 @@ a {
 
 
 .landId{
-  width: 200px;
-  margin-right: 250px;
+  position: absolute;
+  left: 49%;
   text-align: center;
 }
 

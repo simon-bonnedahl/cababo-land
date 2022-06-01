@@ -173,16 +173,19 @@ function App() {
 
 	useEffect(() => {
 		if(CBOTokens != null){
+			//Updatera mängden tokens i databasen på reload efter transaktioner
 		setDoc(doc(db, "accounts", account), {
 			level: 1,
 			CBOTokens: CBOTokens
 		})	
-	}	
-		loadBlockchainData()
+	}else{
 		loadDatabaseData()
+	}
+		loadBlockchainData()
+		
 	
 	
-	}, [account, reload])
+	}, [account, reload, CBOTokens])
 
 	const sellPlot = async (_id, price) => {
 		if(price > 0){
@@ -265,7 +268,6 @@ function App() {
 	const updateTokenBalance = (amount) => {
 		console.log("Updating token balance from ", CBOTokens, " to ", (CBOTokens + amount))
 		setCBOTokens(CBOTokens => (CBOTokens + amount));
-		setReload(!reload)
 
 	}
 
