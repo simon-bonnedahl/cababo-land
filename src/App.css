@@ -109,7 +109,6 @@ a {
   font-family: "roboto";
   position: absolute;
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
 	bottom: 10px;
 	right: 10px;
@@ -235,6 +234,7 @@ svg {
   height: 60%;
 }
 .info--lower-left{
+ 
   height: 80%;
   width: 50%;
   text-indent: 20%;
@@ -262,6 +262,8 @@ svg {
 
 .line {
   align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .line:before, .line:after {
   height: 1px;

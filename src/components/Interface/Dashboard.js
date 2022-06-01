@@ -6,12 +6,14 @@ import CBOToken from '../../abis/CBOToken.json';
 import './Dashboard.css'
 import Logo from '../logo/Logo'
 
-const Dashboard = ({db, account, CBOTokenContract, CBOTokens, mintTokens}) => { 
+const Dashboard = ({db, account, LandContract, CBOTokenContract, CBOTokens, mintTokens, setDashboardView, setLandId, setLandView}) => { 
 
 
     const [totalCBO, setTotalCBO] = useState(0)
     const [mintedCBO, setMintedCBO] = useState(0)
     const [unmintedCBO, setUnmintedCBO] = useState(0)
+
+    const [plots, setPlots] = useState()
 
     const [loadedBlockchain, setLoadedBlockchain] = useState(false)
     const [loadedDatabase, setLoadedDatabase] = useState(false)
@@ -53,8 +55,17 @@ const Dashboard = ({db, account, CBOTokenContract, CBOTokens, mintTokens}) => {
     const loadBlockchainData = async () => {
         console.log("loading blockhain")
         let CBOTokens = await CBOTokenContract.methods.balanceOf(account).call()/(10**18)
-        console.log(CBOTokens)
         setMintedCBO(CBOTokens)
+
+        let allPlots = await LandContract.methods.getPlots().call()
+        let ownedPlots = []
+        for(let plot of allPlots){
+            if(plot.owner === account){
+                ownedPlots.push(plot)
+            }
+        }
+        setPlots(ownedPlots)
+
         setLoadedBlockchain(true)
          
     }
@@ -71,8 +82,16 @@ const Dashboard = ({db, account, CBOTokenContract, CBOTokens, mintTokens}) => {
             <div className="upper">
                 <div className="left">
                 <div className="section-w32 round-border center-text opacity-10">
-                <h1 className="center-text">Plots</h1>
-                ?
+                <h1 className="center-text" style={{marginBottom:20}}>Plots</h1>
+                {plots && plots.map((plot, index) => {
+                    return(
+                        <div className="section-h25">
+                            <p>ID: {parseInt(plot.id) + 1}</p>
+                            <button className="button" style={{height:50}}  onClick={() => (setLandId(parseInt(plot.id) + 1), setDashboardView(false), setLandView(true))}>View Land</button>
+                        </div>
+                        
+                            )
+                })}
                 </div>
                 <div className="section-w32 round-border center-text opacity-10">
                 <h1 className="center-text">Sales</h1>

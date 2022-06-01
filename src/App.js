@@ -36,7 +36,7 @@ function App() {
 	const [CBOTokens, setCBOTokens] = useState(null)
 
 	// Contract & Contract States
-	const [landContract, setLandContract] = useState(null)
+	const [LandContract, setLandContract] = useState(null)
 	const [CBOTokenContract, setCBOTokenContract] = useState(null)
 
 
@@ -159,8 +159,8 @@ function App() {
 
 	const sellPlot = async (_id, price) => {
 		if(price > 0){
-		await landContract.methods.putPlotUpForSale(_id, price).send({from: account})
-		const plots = await landContract.methods.getPlots().call()
+		await LandContract.methods.putPlotUpForSale(_id, price).send({from: account})
+		const plots = await LandContract.methods.getPlots().call()
 		setPlots(plots)
 
 		setReload(!reload)
@@ -171,8 +171,8 @@ function App() {
 
 	}
 	const cancelSell = async (_id) => {
-		await landContract.methods.takeOffMarket(_id).send({from: account})
-		const plots = await landContract.methods.getPlots().call()
+		await LandContract.methods.takeOffMarket(_id).send({from: account})
+		const plots = await LandContract.methods.getPlots().call()
 		setPlots(plots)
 
 		setReload(!reload)
@@ -181,8 +181,8 @@ function App() {
 	}
 
 	const buyPlot = async (_id, price) =>{
-		await landContract.methods.buyPlot(_id).send({value: price, from: account})
-		const plots = await landContract.methods.getPlots().call()
+		await LandContract.methods.buyPlot(_id).send({value: price, from: account})
+		const plots = await LandContract.methods.getPlots().call()
 		setPlots(plots)
 
 		setReload(!reload)
@@ -192,9 +192,9 @@ function App() {
 	const mintPlot = async (_id, price) => {
 		try {
 			
-			await landContract.methods.mint(_id).send({ from: account, value: price.toString() })
+			await LandContract.methods.mint(_id).send({ from: account, value: price.toString() })
 
-			const plots = await landContract.methods.getPlots().call()
+			const plots = await LandContract.methods.getPlots().call()
 			setPlots(plots)
 
 			setLandOwner(plots[_id - 1].owner)
@@ -282,9 +282,13 @@ function App() {
 			{dashboardView && (<Dashboard
 								db={db}
 								account={account}
+								LandContract={LandContract}
 								CBOTokenContract={CBOTokenContract}
 								CBOTokens={CBOTokens}
 								mintTokens={mintTokens}
+								setDashboardView={setDashboardView}
+								setLandId={setLandId}
+								setLandView={setLandView}
 								
 							/>) }
 			
@@ -350,7 +354,8 @@ function App() {
 										buildMode={buildMode}
 										targetedCell={targetedCell}
 										updateTokenBalance={updateTokenBalance}
-										setCBOTokens={setCBOTokens}/>)
+										setCBOTokens={setCBOTokens}
+										owner={landOwner===account}/>)
 					:
 					(landId && (<PlotTooltip landId={landId}
 											landOwner={landOwner}
