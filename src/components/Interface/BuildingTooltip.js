@@ -16,8 +16,8 @@ const BuildingTooltip= ({buildMode, targetedCell, currentBuilding, setReload, re
                          <p>Income: {targetedCell.building.income} CBO/h</p>
                          </div>
                          <div className="info--lower-right">
-                             {targetedCell.building.stored > 0.01 && (<button onClick={() => (targetedCell.collect(), setReload(!reload))} className='button info--buy'>Collect</button>)}
-                             {targetedCell.building.level < 5 && (<button onClick={() => (targetedCell.upgrade() , setReload(!reload))} className='button info--buy'>Upgrade( 1 CBO )</button>)}
+                             {targetedCell.building.stored > 0.01 && (<button onClick={() => (targetedCell.collect())} className='button info--buy'>Collect</button>)}
+                             {targetedCell.building.level < 5 && (<button onClick={() => (targetedCell.upgrade())} className='button info--buy'>Upgrade( 1 CBO )</button>)}
                          </div>
                      </div>
                     )}

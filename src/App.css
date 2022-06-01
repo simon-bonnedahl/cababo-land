@@ -139,7 +139,8 @@ a {
 
 
 .balances{
-  margin-left: 100px;
+  position: absolute;
+  right: 20px;
   width: 20vw;
   font-size: 12px;
 }

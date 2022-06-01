@@ -25,17 +25,14 @@ const Navbar = ({ web3Handler, account , balance, CBOTokens, landId}) => {
             {landId && (<h1 className="landId">{landId}</h1>)}
             
             
-            {account ? (
+          
             <div className="balances flex">
             <h1 className="eth-balance">{(Math.round((balance) * 1000) / 1000) + " ETH"}</h1>
             <h1 className="cbo-balance">{(Math.round((CBOTokens) * 1000) / 1000) + " CBO"}</h1>
             
             <Logo size={50}/>
-            </div>)
-            :
-            (<div className="balances flex">
-                <Logo size={50}/>
-            </div>)}
+            </div>
+           
             
             
             

@@ -14,6 +14,7 @@ const PlotTooltip= ({landId, landOwner, cost, hasOwner, mintPlot, landView, setL
             {landOwner===account ? (<p>Owner: You</p>): (<p>Owner: {landOwner}</p>) }
             </div>
             <div className="divider line glow"/>
+            
             <div className="info--lower">
                 <div className="info--lower-left">
                     {plot.forSale ? (<div>For sale: Yes</div>) : (<div>For sale: No</div>)}

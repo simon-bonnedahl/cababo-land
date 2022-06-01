@@ -79,6 +79,7 @@ function App() {
 	  document.title = "Cababo Land";
 
 	const loadBlockchainData = async () => {
+		console.log("Loading Blockchain data...")
 		if (typeof window.ethereum !== 'undefined') {
 			const web3 = new Web3(window.ethereum)
 			
@@ -88,9 +89,11 @@ function App() {
 			
 
 			if (accounts.length > 0) {
-				setAccount(accounts[0])
-				const balance = await web3.eth.getBalance(web3.utils.toChecksumAddress(accounts[0]))
-				setBalance(web3.utils.fromWei(balance))
+				
+				let _account = web3.utils.toChecksumAddress(accounts[0])
+				setAccount(_account)
+				let _balance = await web3.eth.getBalance(_account)
+				setBalance(web3.utils.fromWei(_balance))
 			}
 			const networkId = await web3.eth.net.getId()
 			try{
@@ -110,7 +113,10 @@ function App() {
 			}
 			// Event listeners...
 			window.ethereum.on('accountsChanged', function (accounts) {
-				setAccount(accounts[0])
+				let _account = web3.utils.toChecksumAddress(accounts[0])
+				console.log("Switching account from ", account, " to ", _account)
+				setCBOTokens(null)
+				setAccount(_account)
 			})
 
 			window.ethereum.on('chainChanged', (chainId) => {
@@ -119,14 +125,18 @@ function App() {
 		}
 	}
 	const loadDatabaseData = async () => {
-		console.log("loading account from databse")
+		console.log("Loading Blockchain data...")
+		console.log("Loading account from databse...")
 		const docRef = doc(db, "accounts", account);
 		const docSnap = await getDoc(docRef);
 		if (docSnap.exists()) {
-			console.log("account found")
+			console.log("account found with ", docSnap.data()['CBOTokens'], " CBOTokens")
 			setCBOTokens(docSnap.data()['CBOTokens'])
 		}else{
 			console.log("account not found")
+			console.log("creating an account")
+			createNewAccount(account)
+			
 		}
 	}
 
@@ -134,10 +144,22 @@ function App() {
 	const web3Handler = async () => {
 		if (web3) {
 			const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-			setCBOTokens(0)
+	
 			setAccount(accounts[0])
 			
 		}
+	}
+	const createNewAccount = async (address) =>{
+		try {
+			await setDoc(doc(db, "accounts", account), {
+				level: 1,
+				CBOTokens: 1	
+			});
+			
+		}catch (error){
+			console.log(error)
+		}
+
 	}
 
 	setTimeout(() => {
@@ -150,12 +172,17 @@ function App() {
 	  }, 10)
 
 	useEffect(() => {
-		
+		if(CBOTokens != null){
+		setDoc(doc(db, "accounts", account), {
+			level: 1,
+			CBOTokens: CBOTokens
+		})	
+	}	
 		loadBlockchainData()
 		loadDatabaseData()
 	
 	
-	}, [account, reload, CBOTokens])
+	}, [account, reload])
 
 	const sellPlot = async (_id, price) => {
 		if(price > 0){
@@ -235,19 +262,11 @@ function App() {
 			window.alert('Error occurred when minting')
 		}
 	}
-	const updateTokenBalance = async (amount) => {
-			
-		try {
-			
-			setDoc(doc(db, "accounts", account), {
-				level: 1,
-				CBOTokens: CBOTokens + amount
-			})		
-			setCBOTokens(CBOTokens => (CBOTokens + amount));
-			
-			}catch (error){
-				console.log(error)
-			}
+	const updateTokenBalance = (amount) => {
+		console.log("Updating token balance from ", CBOTokens, " to ", (CBOTokens + amount))
+		setCBOTokens(CBOTokens => (CBOTokens + amount));
+		setReload(!reload)
+
 	}
 
 	async function docExists(docName, docId) {

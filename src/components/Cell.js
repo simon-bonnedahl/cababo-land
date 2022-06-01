@@ -79,23 +79,22 @@ const Cell = ({pos, id, currentBuilding, setCurrentBuilding, buildMode, setBuild
     }
 
     const upgrade = () => {
-        var currentdate = new Date();
         if(building.level < 5){
             if(CBOTokens > 1){  
-                collect()
-                updateTokenBalance(-1)
-            building.level += 1
-            
-            
-            building['stored'] = 0
-            building['t_lastCollected'] = currentdate.getTime()
-            building.income = Math.round((0.1*building.level) * 100) / 100
+                var currentdate = new Date();
+                updateTokenBalance(building['stored']-1)
+                building['stored'] = 0
+                building['t_lastCollected'] = currentdate.getTime()
+                building.level += 1
+
+                building.income = Math.round((0.1*building.level) * 100) / 100
+
+            }else{
+                window.alert("Not enough CBOTokens")
+                }
         }else{
-            window.alert("Not enough CBOTokens")
+            console.log("Building is already max level")
         }
-    }else{
-        console.log("Building is already max level")
-    }
         
         if (building.name === "Tower"){
             building.model = <Tower level={building.level}/>
