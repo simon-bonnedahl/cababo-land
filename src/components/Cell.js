@@ -50,7 +50,7 @@ const Cell = ({pos, id, currentBuilding, setCurrentBuilding, buildMode, setBuild
     const [building, setBuilding] = useState(_building)
     useEffect(() => {
         if(targetedCell.id === id){
-            setMetalness(0.5)
+            setMetalness(0.2)
             setOutline(0.04)
         }else{
             setMetalness(0.8)
@@ -203,7 +203,7 @@ const Cell = ({pos, id, currentBuilding, setCurrentBuilding, buildMode, setBuild
         <mesh position={pos} onClick={clickHandler}>
         <planeBufferGeometry attach="geometry" args={[1-outline, 1-outline]} />
     
-        <meshStandardMaterial metalness = {metalness} map={colorMap} emissive="#000000" roughness={1} />   
+        <meshStandardMaterial metalness = {metalness} map={colorMap} emissive="#000000" roughness={0.8} />   
         {building && (building.model)} 
     </mesh>
     
