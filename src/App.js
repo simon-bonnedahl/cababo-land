@@ -147,11 +147,10 @@ function App() {
 
 	// MetaMask Login/Connect
 	const web3Handler = async () => {
-		if (web3) {
+		if (web3) {	
 			const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-	
-			setAccount(accounts[0])
-			
+			let _account = web3.utils.toChecksumAddress(accounts[0])
+			setAccount(_account)		
 		}
 	}
 	const createNewAccount = async (address) =>{
