@@ -20,6 +20,7 @@ import Buildmenu from './components/interface/Buildmenu';
 import Dashboard from './components/interface/Dashboard';
 import PlotTooltip from './components/interface/PlotTooltip';
 import BuildingTooltip from './components/interface/BuildingTooltip';
+import Loader from './components/loader/Loader'
 
 // Import ABI
 import Land from './abis/Land.json';
@@ -54,6 +55,7 @@ function App() {
 	const [dashboardView, setDashboardView] = useState(false)
 
 	const [reload, setReload] = useState()
+	const [loading, setLoading] = useState(true)
 
 	const [sunPositionX, setSunPositionX] = useState(0)
 	const [sunPositionZ, setSunPositionZ] = useState(0)
@@ -84,6 +86,7 @@ function App() {
 			const web3 = new Web3(window.ethereum)
 			
 			setWeb3(web3)
+			console.log(web3)
 
 			const accounts = await web3.eth.getAccounts()
 			
@@ -107,8 +110,10 @@ function App() {
 
 			const plots = await land.methods.getPlots().call()
 			setPlots(plots)
+			console.log("Loading done")
+			setLoading(false)
 			}catch(error){
-				setLandId("Switch network")
+				console.log(error)
 				
 			}
 			// Event listeners...
@@ -298,7 +303,13 @@ function App() {
 
 	
 	return (
-		<div>	
+		loading ? (
+		<div>
+		<h1 style={{textAlign: "center"}}>Switch network</h1>
+		<Loader/>
+		</div>) : 
+		(
+			<div>	
 			
 			{dashboardView && (<Dashboard
 								db={db}
@@ -395,6 +406,8 @@ function App() {
 					/>))}</div>
 			
 		</div>
+		)
+		
 		
 	);
 }

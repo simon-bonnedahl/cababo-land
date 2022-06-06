@@ -1,6 +1,8 @@
 import Cell from './Cell.js'
 import Plane from './Plane.js'
+import Loader from './loader/Loader'
 import { useState, useEffect, Fragment} from "react";
+import { Html} from "@react-three/drei";
 import { getDocs, collection } from "firebase/firestore";
 
 const Landview = ({currentBuilding, setCurrentBuilding, buildMode, setBuildMode, targetedCell, setTargetedCell, db, landId, landOwner, CBOTokens, updateTokenBalance}) => {
@@ -43,45 +45,43 @@ const Landview = ({currentBuilding, setCurrentBuilding, buildMode, setBuildMode,
     
   
 
-    if(loading){
-        return (
-            <group rotation={[-Math.PI/2, 0, 0]}>
-            <Plane height={10} width={10} depth={-1} topColor={"#FFFFFF"}/>
-            </group>
-            )
-    }else{
-        return (
-            <group rotation={[-Math.PI/2, 0, 0]}>
-            {cells.map((cell)=>{
-                return(
-                      <Fragment key={cell['id']}>
-                       <Cell    id={cell['id']}
-                                startBuilding={cell['startBuilding']}
-                                pos={cell['pos']}
-                                currentBuilding={currentBuilding}
-                                setCurrentBuilding={setCurrentBuilding}
-                                buildMode={buildMode}
-                                setBuildMode={setBuildMode}
-                                targetedCell={targetedCell}
-                                setTargetedCell={setTargetedCell}
-                                db={db}
-                                landId={landId}
-                                _t_lastCollected={cell['t_lastCollected']}
-                                CBOTokens = {CBOTokens}
-                                updateTokenBalance={updateTokenBalance}
     
-                       />
-                       </Fragment>
-                    )
-            })}
-            <Plane height={10} width={10} depth={1} topColor={"#FFFFFF"}/>
+        return (
+            loading ? (
+            
+            <Html fullscreen={true}>
+                    <Loader/>
+            </Html>) 
+            : 
+            (
+                <group rotation={[-Math.PI/2, 0, 0]}>
+                {cells.map((cell)=>{
+                    return(
+                          <Fragment key={cell['id']}>
+                           <Cell    id={cell['id']}
+                                    startBuilding={cell['startBuilding']}
+                                    pos={cell['pos']}
+                                    currentBuilding={currentBuilding}
+                                    setCurrentBuilding={setCurrentBuilding}
+                                    buildMode={buildMode}
+                                    setBuildMode={setBuildMode}
+                                    targetedCell={targetedCell}
+                                    setTargetedCell={setTargetedCell}
+                                    db={db}
+                                    landId={landId}
+                                    _t_lastCollected={cell['t_lastCollected']}
+                                    CBOTokens = {CBOTokens}
+                                    updateTokenBalance={updateTokenBalance}
         
-            </group>
+                           />
+                           </Fragment>
+                        )
+                })}
+                <Plane height={10} width={10} depth={1} topColor={"#FFFFFF"}/>
+                </group>
+                )   
         )
-    }
-        
-    
-    
+   
 }
 
 export default Landview;

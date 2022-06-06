@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import EthIcon from "../../assets/icons/Eth_Icon.png"
 
 const PlotTooltip= ({landId, landOwner, cost, hasOwner, mintPlot, landView, setLandView, account, sellPlot, cancelSell, web3, plot, buyPlot}) => {
     const [sellPrice, setSellPrice] = useState(null)
@@ -7,7 +8,6 @@ const PlotTooltip= ({landId, landOwner, cost, hasOwner, mintPlot, landView, setL
 
       
         <div className="info">
-
             <div className="info--header">
             <h1>Plot {landId}</h1>
             
@@ -26,7 +26,11 @@ const PlotTooltip= ({landId, landOwner, cost, hasOwner, mintPlot, landView, setL
                     {/*Mint plot */}
                     {(plot.forSale && !hasOwner)&& (
                         <div>
-                            <div>Mint price: {web3.utils.fromWei(plot.price.toString(), 'ether')} ETH</div>
+                            <div>
+                            <img className="eth-icon" src={EthIcon}/>
+                            {web3.utils.fromWei(plot.price.toString(), 'ether')}
+                            
+                            </div>
                             <button onClick={() => mintPlot(landId, plot.price)} className='button info--buy'>Mint Property</button>     
                         </div>
                     )}
@@ -34,7 +38,11 @@ const PlotTooltip= ({landId, landOwner, cost, hasOwner, mintPlot, landView, setL
                     {/*Buy plot */}
                     {(plot.forSale && hasOwner && landOwner!==account) && (
                         <div>
-                             <div>Buy price: {web3.utils.fromWei(plot.price.toString(), 'ether')} ETH</div>
+                             <div>
+                             <img className="eth-icon" src={EthIcon}/>
+                             {web3.utils.fromWei(plot.price.toString(), 'ether')} 
+                             
+                             </div>
                             <button onClick={() => buyPlot(landId, plot.price)} className='button info--buy'>Buy Property</button>    
                         </div>
                     )}  
@@ -69,7 +77,10 @@ const PlotTooltip= ({landId, landOwner, cost, hasOwner, mintPlot, landView, setL
                     {/*Cancel sale */}
                     {(landOwner===account && plot.forSale) && (
                         <div>
-                            <div>Sell price: {web3.utils.fromWei(plot.price.toString(), 'ether')} ETH</div>
+                            <div>
+                            <img className="eth-icon" src={EthIcon}/>
+                            {web3.utils.fromWei(plot.price.toString(), 'ether')} 
+                            </div>
                             <button onClick={() => (cancelSell(landId))} className='button info--buy'>Cancel Sell</button>
                         </div>
                     )}

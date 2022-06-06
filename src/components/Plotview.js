@@ -1,5 +1,6 @@
 import Plot from "./Plot";
 import Plane from "./Plane";
+import EthIcon from "../assets/icons/Eth_Icon.png"
 const Plotview = ({plots, hoveringLandId, setLandName, setLandOwner, setHasOwner, setLandId, setHoveringLandId}) => {
     return (
         <group  rotation={[-Math.PI/2, 0, 0]}>
