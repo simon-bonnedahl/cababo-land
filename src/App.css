@@ -235,6 +235,7 @@ svg {
   justify-content: space-between;
   height: 60%;
   font-size: 18px;
+  margin-top: 10px;
 }
 .info--lower-left{
  
@@ -302,7 +303,7 @@ input {
   font-size: 14px;
   transition: 0.3s ease;
   margin-left: 85px;
-  margin-top: 20px;
+  margin-top: 0px;
   text-indent: 30px;
 }
 input:valid ~ label {
