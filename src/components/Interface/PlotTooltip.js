@@ -18,8 +18,6 @@ const PlotTooltip= ({landId, landOwner, cost, hasOwner, mintPlot, landView, setL
             <div className="info--lower">
                 <div className="info--lower-left">
                     {plot.forSale ? (<div>For sale: Yes</div>) : (<div>For sale: No</div>)}
-                    <div>Size: 10</div>
-                    <div>Some other info: ?</div>
                     {!landView && (<button onClick={() => setLandView(true)} className='button info--buy'>View Land</button>)}
                 </div>
                 <div className="info--lower-right">

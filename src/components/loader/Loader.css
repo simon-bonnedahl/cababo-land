@@ -1,8 +1,8 @@
 
   .mosaic-loader {
     margin: auto;
-    margin-top: 20%;
-    --cell-size: 64px;
+    margin-top: 10%;
+    --cell-size: 100px;
     --cell-spacing: 1px;
     --border-width: 1px;
     --cells: 4;
@@ -12,7 +12,7 @@
     width: var(--total-size);
     height: var(--total-size);
     transform:rotateX(60deg) rotateZ(45deg) translateZ(-1em);
-  transform-style: preserve-3d;
+    transform-style: preserve-3d;
 
   }
   .mosaic-loader > .cell {

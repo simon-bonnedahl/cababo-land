@@ -1,7 +1,9 @@
 {
-  "name": "metaverse",
-  "version": "0.1.0",
-  "private": true,
+  "name": "Cababo-Land",
+  "homepage": "./",
+  "version": "1.0.0",
+  "description": "Web3 Land project",
+  "private": false,
   "dependencies": {
     "@openzeppelin/contracts": "^4.5.0",
     "@react-three/cannon": "^4.6.1",
@@ -13,11 +15,13 @@
     "chai": "^4.3.6",
     "chai-as-promised": "^7.1.1",
     "firebase": "^9.7.0",
+    "fs": "^0.0.1-security",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
     "three": "^0.137.5",
+    "truffle-hdwallet-provider": "^1.0.17",
     "web-vitals": "^2.1.4",
     "web3": "^1.7.0"
   },
@@ -46,6 +50,7 @@
     ]
   },
   "devDependencies": {
+    "@truffle/hdwallet-provider": "^2.0.8",
     "assert": "^2.0.0",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",

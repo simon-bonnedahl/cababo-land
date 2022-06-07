@@ -100,7 +100,7 @@ function App() {
 			}
 			const networkId = await web3.eth.net.getId()
 			try{
-			const land = new web3.eth.Contract(Land.abi, Land.networks[networkId].address)
+			const land = new web3.eth.Contract(Land.abi, '0x327C4aF2e2cE1e5BE5f48054778754f591C892eC')
 
 			setLandContract(land)
 			const CBOTokenContract = new web3.eth.Contract(CBOToken.abi, CBOToken.networks[networkId].address)
@@ -304,7 +304,8 @@ function App() {
 	return (
 		loading ? (
 		<div>
-		<h1 style={{textAlign: "center"}}>Switch network</h1>
+		<h1 style={{textAlign: "center"}}>Metamask required</h1>
+		<h1 style={{textAlign: "center"}}>Switch to Ropsten testnetwork</h1>
 		<Loader/>
 		</div>) : 
 		(
