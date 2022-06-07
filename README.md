@@ -1,5 +1,6 @@
 # Cababo Land
-Cababo Land is a Web3 project currently under development
+Cababo Land is a Web3 project currently under development <br>
+Deployed on Ropsten testnetwork https://simonbonnedahl.dev/projects/cababo-land/
 
 ## Preview
 
