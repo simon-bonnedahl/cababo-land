@@ -50,7 +50,8 @@ const Landview = ({currentBuilding, setCurrentBuilding, buildMode, setBuildMode,
             loading ? (
             
             <Html fullscreen={true}>
-                    <h1>Loading Database</h1>
+                    <h1>Loading Database ...</h1>
+                    <h1> </h1>
                     <Loader/>
             </Html>) 
             : 

@@ -1,4 +1,5 @@
 
+import Logo from "../logo/Logo"
 const BuildingTooltip= ({buildMode, targetedCell, currentBuilding, setReload, reload, updateTokenBalance, owner}) => {
     return (
             targetedCell.building && (
@@ -11,9 +12,13 @@ const BuildingTooltip= ({buildMode, targetedCell, currentBuilding, setReload, re
                     {owner && (
                          <div className="info--lower">
                          <div className="info--lower-left">
-                         <p>Stored: {targetedCell.building.stored} CBO</p>
+                        <div className="section-h25 w60">
+                        Stored: <Logo size={15}></Logo> {targetedCell.building.stored} 
+                        </div>
                          
-                         <p>Income: {targetedCell.building.income} CBO/h</p>
+                        <div className="section-h25">
+                        Income: <Logo size={15}></Logo> {targetedCell.building.income } /h
+                        </div>
                          </div>
                          <div className="info--lower-right">
                              {targetedCell.building.stored > 0.01 && (<button onClick={() => (targetedCell.collect())} className='button info--buy'>Collect</button>)}

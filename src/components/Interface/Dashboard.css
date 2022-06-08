@@ -74,7 +74,11 @@
     justify-content: space-around;
 
 }
-
+.w60{
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+}
 .round-border{
 
     border: 1px solid gray;

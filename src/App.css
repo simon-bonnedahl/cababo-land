@@ -196,7 +196,7 @@ a {
 svg {
   position: absolute;
   left: 24px;
-  top: 5px;
+  top: 8%;
   fill: none;
   stroke: #fff;
   stroke-dasharray: 150 480;

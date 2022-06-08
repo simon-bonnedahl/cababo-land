@@ -90,7 +90,9 @@ const Cell = ({pos, id, currentBuilding, setCurrentBuilding, buildMode, setBuild
                 building.income = Math.round((0.1*building.level) * 100) / 100
 
             }else{
+                console.log(CBOTokens)
                 window.alert("Not enough CBOTokens")
+                
                 }
         }else{
             console.log("Building is already max level")
