@@ -244,6 +244,7 @@ svg {
   text-indent: 20%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .info--lower-right{
   height: 80%;
@@ -251,7 +252,22 @@ svg {
   text-indent: 20%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 
+}
+.info--row{
+  height: 25%;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+.info--column{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .divider {
@@ -285,26 +301,25 @@ svg {
 
 label {
   position: absolute;
-  top: 0px;
-  transform: translateX(40%);
+  top: 8px;
+  left:0px;
   color: rgba(255, 255, 255, 0.5);
-  font: 100 14px Roboto;
+  font: 100 100% Roboto;
   cursor: text;
   transition: 0.25s ease;
 }
 
 input {
   display: block;
-  width: 44%;
+  width: 100%;
   border: none;
   border-radius: 0;
   color: white;
   background: rgba(0, 0, 0, 0);
-  font-size: 14px;
+  font-size: 100%;
   transition: 0.3s ease;
-  margin-left: 85px;
-  margin-top: 0px;
-  text-indent: 30px;
+  text-indent: 10px;
+  margin-top: 10%;
 }
 input:valid ~ label {
   top: -20px;
@@ -329,10 +344,11 @@ input:-webkit-autofill {
 }
 
 .bar {
-  margin-left: 85px;
+  margin-top: 5%;
+  left:-20px;
   background: rgba(255, 255, 255, 0.5);
   content: "";
-  width: 32%;
+  width: 130%;
   height: 3px;
   transition: 0.3s ease;
   position: relative;
@@ -341,19 +357,21 @@ input:-webkit-autofill {
 .bar:before {
   content: "";
   position: absolute;
-  width: 110%;
+  width: 140%;
   height: 150%;
   background: #4f4fa4;
   transform: translateX(-100%);
-  margin-left: -20px;
+  margin-left: -30px;
 }
 
 .inputfield{
   position: relative;
+  width: 50%;
+  height: 100%;
+  
 }
 
 .eth-icon{
-  width: 14px;
-  margin-right: 5px;
-  margin-left: 23%;
+  width: 15px;
+  height: 15px;
 }
