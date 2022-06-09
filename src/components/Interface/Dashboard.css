@@ -72,7 +72,6 @@
     height: 25%;
     display: flex;
     justify-content: space-around;
-    border: 1px solid white;
     align-items: center;
 
 }
