@@ -14,13 +14,13 @@ const Buildmenu = ({setBuildMode, MoveCamera, setCurrentBuilding, setTargetedCel
     const Farm  = {
       name: "Farm",
       buildCost: 2,
-      baseIncome: 0.1
+      baseIncome: 0.2
 
     }
     const Tower = {
       name: "Tower",
       buildCost: 3,
-      baseIncome: 0.1
+      baseIncome: 0.3
 
     }
     return (
@@ -34,16 +34,16 @@ const Buildmenu = ({setBuildMode, MoveCamera, setCurrentBuilding, setTargetedCel
             <a >Back</a>
           </li>
 
-          <li className="buildmenu-nav__items " onClick={() => {setCurrentBuilding(House)}}>
+          <li className="buildmenu-nav__items " onClick={() => setCurrentBuilding(House)} onMouseEnter={() => setCurrentBuilding(House)} onMouseLeave={() => setCurrentBuilding(null)}>
           <img src={HouseIcon} ></img>
             <a >House</a>
           </li>
           
-          <li className="buildmenu-nav__items " onClick={() => {setCurrentBuilding(Farm)}}>
+          <li className="buildmenu-nav__items " onClick={() => setCurrentBuilding(Farm)} onMouseEnter={() => setCurrentBuilding(Farm)}>
           <img src={FarmIcon} ></img>
             <a >Farm</a>
           </li>
-          <li className="buildmenu-nav__items " onClick={() => {setCurrentBuilding(Tower)}}>
+          <li className="buildmenu-nav__items " onClick={() => setCurrentBuilding(Tower)} onMouseEnter={() => setCurrentBuilding(Tower)}>
           <img src={TowerIcon} ></img>
             <a >Tower</a>
           </li>

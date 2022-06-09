@@ -377,6 +377,7 @@ function App() {
 														   landOwner={landOwner}
 														   account={account}
 														   setLandId={setLandId}
+														   setTargetedCell={setTargetedCell}
 												/>))}
 			
 			{landView ? 

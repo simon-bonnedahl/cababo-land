@@ -1,14 +1,14 @@
 import './Sidemenu.css'
 import HammerIcon from '../../assets/icons/hammer.svg'
 
-const Sidemenu = ({setBuildMode, landView, setLandView, dashboardView, setDashboardView, landOwner, account, setLandId}) => {
+const Sidemenu = ({setBuildMode, landView, setLandView, dashboardView, setDashboardView, landOwner, account, setLandId, setTargetedCell}) => {
     return (
 
       
 
       <nav className="sidemenu-nav__cont">
         <ul className="sidemenu-nav">
-          {(landView && (landOwner === account))  && (<li className="sidemenu-nav__items " onClick={() => setBuildMode(true)} >
+          {(landView && (landOwner === account))  && (<li className="sidemenu-nav__items " onClick={() => (setBuildMode(true), setTargetedCell({id:-1, building: null}))} >
           <img src={HammerIcon} ></img>
             <a >Build</a>
           </li>)}   

@@ -22,7 +22,8 @@ const Cell = ({pos, id, currentBuilding, setCurrentBuilding, buildMode, setBuild
 
         let _name = startBuilding.split(":")[0]
         let _level = parseInt(startBuilding.split(":")[1])
-        let _income = Math.round((0.1*_level) * 100) / 100
+        let _income = parseFloat(startBuilding.split(":")[2])
+        //let _income = Math.round((0.1*_level) * 100) / 100                  //ändra income här
         let difference = currentdate.getTime() - _t_lastCollected;
         let minutesDifference = Math.floor(difference/1000/60);
         let _stored = (minutesDifference*_income)/60
@@ -61,7 +62,7 @@ const Cell = ({pos, id, currentBuilding, setCurrentBuilding, buildMode, setBuild
             let currentdate = new Date();
             let difference = currentdate.getTime() - building['t_lastCollected'];
             let minutesDifference = Math.floor(difference/1000/60);
-            let income = Math.round((0.1*building['level']) * 100) / 100
+            let income = Math.round((building['income']) * 100) / 100
             let stored = (minutesDifference*income)/60
             building['stored'] = (Math.floor(stored * 1000) / 1000)
             setBuilding(building)
@@ -87,7 +88,7 @@ const Cell = ({pos, id, currentBuilding, setCurrentBuilding, buildMode, setBuild
                 building['t_lastCollected'] = currentdate.getTime()
                 building.level += 1
 
-                building.income = Math.round((0.1*building.level) * 100) / 100
+                building.income = Math.round((building.income*2) * 100) / 100
 
             }else{
                 console.log(CBOTokens)
@@ -153,7 +154,7 @@ const Cell = ({pos, id, currentBuilding, setCurrentBuilding, buildMode, setBuild
         })
         
 
-        if(buildMode){     
+        if(buildMode && currentBuilding){     
            build()
         }
    
@@ -165,9 +166,9 @@ const Cell = ({pos, id, currentBuilding, setCurrentBuilding, buildMode, setBuild
                 if(CBOTokens >= currentBuilding.buildCost){      
                 updateTokenBalance(-currentBuilding.buildCost)
                 _building = {
-                    name: currentBuilding['name'],
+                    name: currentBuilding.name,
                     level: 1,
-                    income: 0.1,
+                    income: currentBuilding.baseIncome,
                     stored: 0,
                     t_lastCollected: currentdate.getTime(),
                     model: null

@@ -20,7 +20,7 @@ const Landview = ({currentBuilding, setCurrentBuilding, buildMode, setBuildMode,
     
                 cells[doc.id-1] = { id: parseInt(doc.id),
                                             pos: data['pos'],
-                                            startBuilding: data['building'] + ":" + data['level'].toString(),
+                                            startBuilding: data['building'] + ":" + data['level'].toString() + ":" + data['income'].toString(),
                                             t_lastCollected: data['t_lastCollected']
                                             }
                 console.log(doc.id, " => ", data['building']);

@@ -2,7 +2,8 @@
 import Logo from "../logo/Logo"
 const BuildingTooltip= ({buildMode, targetedCell, currentBuilding, setReload, reload, updateTokenBalance, owner}) => {
     return (
-            targetedCell.building && (
+            
+            targetedCell.building ? (
                 <div className="info">
                     <div className="info--header">
                         <h1>{targetedCell.building.name}</h1>
@@ -29,7 +30,31 @@ const BuildingTooltip= ({buildMode, targetedCell, currentBuilding, setReload, re
                    
                 </div>
                 
-                )
+                ) 
+                : 
+                (currentBuilding && (
+                    <div className="info">
+                    <div className="info--header">
+                        <h1>{currentBuilding.name}</h1>
+                        Level: 1
+                    </div>
+                    <div className="divider line glow"/>
+                    
+                    <div className="info--lower">
+                        <div className="info--lower-left">
+                        <div className="section-h25 w60">
+                        Cost: <Logo size={15}></Logo> {currentBuilding.buildCost} 
+                        </div>
+                         
+                        <div className="section-h25">
+                        Income: <Logo size={15}></Logo> {currentBuilding.baseIncome} /h
+                        </div>
+                         </div>
+                         
+                     </div>
+                    
+                   
+                </div>))
             
         
              
