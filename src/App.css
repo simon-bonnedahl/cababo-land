@@ -34,7 +34,7 @@ canvas {
 }
 
 h1 {
-  margin: 0.3em auto 0;
+  margin:  auto 0;
   font-family: "roboto";
   font-weight: 100;
 }
@@ -62,7 +62,8 @@ nav {
   align-items: center;
 }
 
-.flex-between {
+.flex-between { 
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -141,9 +142,11 @@ a {
 
 .balances{
   position: absolute;
-  right: 20px;
-  width: 20vw;
-  font-size: 12px;
+  right: 2vw;
+  width: 5vw;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
 }
 .cbo-balance{
   margin-left: 0px;

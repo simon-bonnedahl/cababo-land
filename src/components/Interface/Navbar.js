@@ -1,9 +1,10 @@
 import Logo from '../logo/Logo'
+import EthIcon from "../../assets/icons/Eth_Icon.png"
 const Navbar = ({ web3Handler, account , balance, CBOTokens, landId}) => {
     return (
         <nav className="flex-between">
 
-
+            
             {account ? (
                  
                  <button onClick={web3Handler} className="btn purple">
@@ -22,16 +23,24 @@ const Navbar = ({ web3Handler, account , balance, CBOTokens, landId}) => {
                 <span>Connect Wallet</span>
                 </button>
             )}
+           
             {landId && (<h1 className="landId">{landId}</h1>)}
             
             
           
-            <div className="balances flex">
-            <h1 className="eth-balance">{(Math.round((balance) * 1000) / 1000) + " ETH"}</h1>
-            <h1 className="cbo-balance">{(Math.round((CBOTokens) * 1000) / 1000) + " CBO"}</h1>
+            <div className="balances">
+                <div className="flex-between">
+                    <img className="eth-icon" src={EthIcon}/>
+                    <h1 className="eth-balance">{(Math.round((balance) * 1000) / 1000)}</h1> 
+                </div>
+                <div className="flex-between">
+                    <Logo size={15}/>
+                    <h1 className="cbo-balance">{(Math.round((CBOTokens) * 1000) / 1000)}</h1>
+                </div>
             
-            <Logo size={50}/>
+           
             </div>
+            
            
             
             
