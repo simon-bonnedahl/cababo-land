@@ -3,8 +3,12 @@ import HouseIcon from '../../assets/icons/House_Icon.png'
 import FarmIcon from '../../assets/icons/Farm_Icon.png'
 import TowerIcon from '../../assets/icons/Tower_Icon.png'
 import BackArrow from '../../assets/icons/back-arrow.svg'
+import { useState } from 'react'
 
-const Buildmenu = ({setBuildMode, MoveCamera, setCurrentBuilding, setTargetedCell}) => {
+const Buildmenu = ({setBuildMode, setCurrentBuilding, setTargetedCell}) => {
+
+    const [clicked, setClicked] = useState(null)
+
     const House = {
       name: "House",
       buildCost: 1,
@@ -23,6 +27,7 @@ const Buildmenu = ({setBuildMode, MoveCamera, setCurrentBuilding, setTargetedCel
       baseIncome: 0.3
 
     }
+
     return (
 
       
@@ -34,16 +39,16 @@ const Buildmenu = ({setBuildMode, MoveCamera, setCurrentBuilding, setTargetedCel
             <a >Back</a>
           </li>
 
-          <li className="buildmenu-nav__items " onClick={() => setCurrentBuilding(House)} onMouseEnter={() => setCurrentBuilding(House)} onMouseLeave={() => setCurrentBuilding(null)}>
+          <li className="buildmenu-nav__items " onClick={() => setClicked("House")} onMouseEnter={() => (setCurrentBuilding(House), setClicked(null))} onMouseLeave={() => (clicked != "House" && setCurrentBuilding(null))}>
           <img src={HouseIcon} ></img>
             <a >House</a>
           </li>
           
-          <li className="buildmenu-nav__items " onClick={() => setCurrentBuilding(Farm)} onMouseEnter={() => setCurrentBuilding(Farm)}>
+          <li className="buildmenu-nav__items " onClick={() => setClicked("Farm")} onMouseEnter={() => (setCurrentBuilding(Farm), setClicked(null))} onMouseLeave={() => (clicked != "Farm" && setCurrentBuilding(null))}>
           <img src={FarmIcon} ></img>
             <a >Farm</a>
           </li>
-          <li className="buildmenu-nav__items " onClick={() => setCurrentBuilding(Tower)} onMouseEnter={() => setCurrentBuilding(Tower)}>
+          <li className="buildmenu-nav__items " onClick={() => setClicked("Tower")} onMouseEnter={() => (setCurrentBuilding(Tower), setClicked(null))} onMouseLeave={() => (clicked != "Tower" && setCurrentBuilding(null))}>
           <img src={TowerIcon} ></img>
             <a >Tower</a>
           </li>
