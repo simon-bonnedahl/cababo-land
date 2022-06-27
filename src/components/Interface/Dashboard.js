@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
-import { doc, setDoc, getDoc} from "firebase/firestore";
+import { doc, getDoc} from "firebase/firestore";
 
-import CBOToken from '../../abis/CBOToken.json';
+
 
 import './Dashboard.css'
 import Logo from '../logo/Logo'

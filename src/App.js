@@ -1,11 +1,10 @@
 import Web3 from 'web3';
-import { Suspense, useState, useEffect, useRef } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { MapControls, Stars, Sky, SpotLight} from '@react-three/drei';
-import { Vector3 } from 'three'
+import { Suspense, useState, useEffect} from 'react';
+import { Canvas, useFrame} from '@react-three/fiber';
+import { MapControls, Stars, Sky} from '@react-three/drei';
 // Database
 import { initializeApp } from "firebase/app";
-import { getFirestore, doc, setDoc, collection, getDoc} from "firebase/firestore";
+import { getFirestore, doc, setDoc, getDoc} from "firebase/firestore";
 
 
 // Import CSS
