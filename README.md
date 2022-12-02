@@ -1,8 +1,8 @@
 # Cababo Land
-Cababo Land is a Web3 project under development <br>
-Current version is deployed on Ropsten testnetwork at https://simonbonnedahl.dev/projects/cababo-land/ <br>
+Cababo Land is a Web3 project
+Current version is deployed on Sepolia testnetwork at https://simonbonnedahl.dev/projects/cababo-land/ <br>
 Etherscan: https://ropsten.etherscan.io/address/0x327C4aF2e2cE1e5BE5f48054778754f591C892eC <br>
-Get test ether on: https://faucet.egorfine.com/
+Get sepoliaETH on: https://faucet.sepolia.dev/
 
 
 ## Preview
