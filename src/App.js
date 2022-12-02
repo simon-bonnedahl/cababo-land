@@ -99,7 +99,7 @@ function App() {
 			}
 			const networkId = await web3.eth.net.getId()
 			try{
-			const land = new web3.eth.Contract(Land.abi, '0x327C4aF2e2cE1e5BE5f48054778754f591C892eC')
+			const land = new web3.eth.Contract(Land.abi, '0x1e6160BbD640367f8717e37a032F36a544fe5c65')
 
 			setLandContract(land)
 			const CBOTokenContract = new web3.eth.Contract(CBOToken.abi, CBOToken.networks[networkId].address)
