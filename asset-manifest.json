@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/simon-bonnedahl/CababoLand/static/css/main.7f95333a.css",
+    "main.js": "/simon-bonnedahl/CababoLand/static/js/main.1d31832d.js",
+    "static/media/Farm_Icon.png": "/simon-bonnedahl/CababoLand/static/media/Farm_Icon.b4c92cef209f435ce3bc.png",
+    "static/media/Tower_Icon.png": "/simon-bonnedahl/CababoLand/static/media/Tower_Icon.675f5316f515be24a051.png",
+    "static/media/House_Icon.png": "/simon-bonnedahl/CababoLand/static/media/House_Icon.6a9d269656d3eb5168e2.png",
+    "static/media/stone3Texture_1.jpeg": "/simon-bonnedahl/CababoLand/static/media/stone3Texture_1.73ad85ab5761f5e0fd87.jpeg",
+    "static/media/stone3Texture_2.jpeg": "/simon-bonnedahl/CababoLand/static/media/stone3Texture_2.73ad85ab5761f5e0fd87.jpeg",
+    "static/media/stone3Texture_3.jpeg": "/simon-bonnedahl/CababoLand/static/media/stone3Texture_3.73ad85ab5761f5e0fd87.jpeg",
+    "static/media/grass.jpeg": "/simon-bonnedahl/CababoLand/static/media/grass.2e8a3e22416098d6a3be.jpeg",
+    "static/media/hammer.svg": "/simon-bonnedahl/CababoLand/static/media/hammer.98e409e683a1dc22cd1bf757170ac6ff.svg",
+    "index.html": "/simon-bonnedahl/CababoLand/index.html",
+    "static/media/back-arrow.svg": "/simon-bonnedahl/CababoLand/static/media/back-arrow.e58e5f29bad44fef9f1e0f314f1eb519.svg",
+    "main.7f95333a.css.map": "/simon-bonnedahl/CababoLand/static/css/main.7f95333a.css.map",
+    "main.1d31832d.js.map": "/simon-bonnedahl/CababoLand/static/js/main.1d31832d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7f95333a.css",
+    "static/js/main.1d31832d.js"
+  ]
+}
